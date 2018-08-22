@@ -21,6 +21,7 @@
 		9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */; };
 		9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */; };
 		A40CF7B663EC3E8FA3694644 /* Pods_BlueToot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCEA9B521743CCA2C065011 /* Pods_BlueToot.framework */; };
+		DE549392212DCE0200995E83 /* ComposeTootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE549391212DCE0200995E83 /* ComposeTootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,7 @@
 		9CFDDF10212CE06F007FC2DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CFDDF12212CE06F007FC2DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CFDDF1A212D0CAB007FC2DF /* ClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientManager.swift; sourceTree = "<group>"; };
-		9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootsTableViewController.swift; sourceTree = "<group>"; };
+		9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = TootsTableViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9CFDDF20212D9184007FC2DF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9CFDDF22212D91BE007FC2DF /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		9CFDDF25212D9460007FC2DF /* StatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerWithAdapter.swift; sourceTree = "<group>"; };
 		9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesAdapter.swift; sourceTree = "<group>"; };
 		A3D158A05994C634D6289FD6 /* Pods-BlueToot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueToot/Pods-BlueToot.debug.xcconfig"; sourceTree = "<group>"; };
+		DE549391212DCE0200995E83 /* ComposeTootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				9CFDDF27212D9DB6007FC2DF /* Protocols */,
 				9CFDDF1F212D9152007FC2DF /* Coordinators */,
 				9CFDDF24212D943E007FC2DF /* Timeline */,
+				DE549372212DBA2E00995E83 /* Compose */,
 				9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */,
 				9CFDDF0A212CE06C007FC2DF /* Main.storyboard */,
 				9CFDDF0D212CE06F007FC2DF /* Assets.xcassets */,
@@ -126,6 +129,14 @@
 				99B34D28972EAA355FD377D7 /* Pods-BlueToot.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DE549372212DBA2E00995E83 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				DE549391212DCE0200995E83 /* ComposeTootViewController.swift */,
+			);
+			path = Compose;
 			sourceTree = "<group>";
 		};
 		F1DDA05E2B1365350269AC0C /* Frameworks */ = {
@@ -258,6 +269,7 @@
 				9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */,
 				9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */,
 				9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */,
+				DE549392212DCE0200995E83 /* ComposeTootViewController.swift in Sources */,
 				9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */,
 				9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */,
 			);
