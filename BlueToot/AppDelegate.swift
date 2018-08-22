@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
     let rootCoordinator = RootCoordinator(window: window)
         rootCoordinator.start()
 
@@ -24,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     if (url.host == "oauth-callback") {
-      print(url)
       OAuthSwift.handle(url: url)
     }
     return true

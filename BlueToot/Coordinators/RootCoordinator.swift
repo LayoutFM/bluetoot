@@ -45,6 +45,5 @@ class RootCoordinator {
         notificationsNavigationController
       ]
     }
-
   }
 }

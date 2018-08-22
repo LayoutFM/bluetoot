@@ -24,6 +24,16 @@ class TimelineCoordinator: Coordinator {
     let dataProvider = StatusDataProvider(client: client)
     let dataPresenter = StatusDataPresenter()
     let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
+        viewController.delegate = self
     self.navigationController.pushViewController(viewController, animated: false)
+  }
+}
+
+extension TimelineCoordinator: TootsDelegate {
+  func didPressToot(button: UIButton) {
+    let composeNavigationController = UINavigationController()
+    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.start()
+    navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
 }
