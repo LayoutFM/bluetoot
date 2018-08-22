@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import MastodonKit
 
 class TootsTableViewController: TableViewControllerWithDataAdapter {
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = "Timeline"
+    tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
 
     let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
