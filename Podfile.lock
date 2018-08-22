@@ -1,0 +1,28 @@
+PODS:
+  - MastodonKit (1.0.10)
+  - OAuthSwift (1.2.2)
+
+DEPENDENCIES:
+  - MastodonKit (from `https://github.com/MastodonKit/MastodonKit.git`)
+  - OAuthSwift (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - OAuthSwift
+
+EXTERNAL SOURCES:
+  MastodonKit:
+    :git: https://github.com/MastodonKit/MastodonKit.git
+
+CHECKOUT OPTIONS:
+  MastodonKit:
+    :commit: cf918af98196ab8f4829d46dbc709b1247c80af7
+    :git: https://github.com/MastodonKit/MastodonKit.git
+
+SPEC CHECKSUMS:
+  MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
+  OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
+
+PODFILE CHECKSUM: 9da00dec0942b78a484d1eaef8d2f0dbb2e57765
+
+COCOAPODS: 1.5.0
