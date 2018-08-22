@@ -27,7 +27,7 @@ class TootsTableViewController: UITableViewController {
 
     title = "Timeline"
 
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+    tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
     loadTimeline()
   }
 
@@ -50,15 +50,14 @@ class TootsTableViewController: UITableViewController {
     return statuses.count
   }
 
-
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let status = statuses[indexPath.row]
+    let status = statuses[indexPath.row]
     let formattedContent = status.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
-      let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-          cell.textLabel?.numberOfLines = 0
-          cell.textLabel?.text = "\(status.account.displayName): \(formattedContent)"
-
+    let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! StatusTableViewCell
+        cell.userNameLabel.text = status.account.displayName
+        cell.contentLabel.text = formattedContent
+    
       return cell
   }
 
