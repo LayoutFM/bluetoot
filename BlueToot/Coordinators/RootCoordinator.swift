@@ -19,7 +19,9 @@ class RootCoordinator: Coordinator {
   func start() {
     let clientManager = ClientManager(baseURL: "https://mastodon.design")
         clientManager.authorize(viewController: navigationController) {
-          let viewController = TootsTableViewController(client: clientManager.client)
+          let dataProvider = StatusDataProvider(client: clientManager.client)
+          let dataPresenter = StatusDataPresenter()
+          let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
           self.navigationController.pushViewController(viewController, animated: false)
         }
   }
