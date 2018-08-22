@@ -14,5 +14,9 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     super.viewDidLoad()
 
     title = "Timeline"
+
+    let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    tableView.refreshControl = refreshControl
   }
 }
