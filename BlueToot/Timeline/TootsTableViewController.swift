@@ -19,7 +19,7 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     tableView.refreshControl = refreshControl
     
-    // Set up the New Toot button in the Navigation Bar
+    // Set up the New Toot burron in the Navigation Bar
     let tootButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushComposeView))
     self.navigationItem.rightBarButtonItem = tootButton
   }
