@@ -16,9 +16,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-    let rootNavigationController = UINavigationController()
-    let coordinator = RootCoordinator(with: rootNavigationController)
-        coordinator.start()
+//    let rootNavigationController = UINavigationController()
+//    let coordinator = RootCoordinator(with: rootNavigationController)
+//        coordinator.start()
+    
+    let tabBarController = UITabBarController()
+    var homeVC = UITableViewController()
+    
+    // Auth and create timeline
+    let clientManager = ClientManager(baseURL: "https://mastodon.design")
+    clientManager.authorize(viewController: tabBarController) {
+        homeVC = TootsTableViewController(client: clientManager.client)
+    }
+    homeVC.title = "Home"
+    homeVC.tabBarItem = UITabBarItem(title: "🏠 Home", image: nil, tag: 0)
+    
+    let localVC = UIViewController()
+    localVC.title = "Local"
+    localVC.tabBarItem = UITabBarItem(title: "👩‍👧‍👦 Local", image: nil, tag: 0)
+    
+    let notificationsVC = UIViewController()
+    notificationsVC.title = "Notifications"
+    notificationsVC.tabBarItem = UITabBarItem(title: "🛎 Notifications", image: nil, tag: 0)
+    
+    // Just for visual debug
+    homeVC.view.backgroundColor = UIColor.white
+    localVC.view.backgroundColor = UIColor.red
+    notificationsVC.view.backgroundColor = UIColor.cyan
+    
+    let controllers = [homeVC, localVC, notificationsVC]
+    
+    tabBarController.viewControllers = controllers.map {
+        UINavigationController(rootViewController: $0)
+    }
+    
+    let rootNavigationController = tabBarController
 
     window?.rootViewController = rootNavigationController
     window?.backgroundColor = .white
