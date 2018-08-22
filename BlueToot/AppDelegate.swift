@@ -19,17 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    let rootNavigationController = UINavigationController()
 //    let coordinator = RootCoordinator(with: rootNavigationController)
 //        coordinator.start()
+//    // This is what you had, Kevin 👆
     
     let tabBarController = UITabBarController()
     var homeVC = UITableViewController()
     
-    // Auth and create timeline
+    // Auth and create instance of timeline
     let clientManager = ClientManager(baseURL: "https://mastodon.design")
     clientManager.authorize(viewController: tabBarController) {
         let dataProvider = StatusDataProvider(client: clientManager.client)
         let dataPresenter = StatusDataPresenter()
         homeVC = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
     }
+    
+    // Continue creation of all 3 main views in the Tab Bar
     homeVC.title = "Home"
     homeVC.tabBarItem = UITabBarItem(title: "🏠 Home", image: nil, tag: 0)
     
@@ -41,17 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     notificationsVC.title = "Notifications"
     notificationsVC.tabBarItem = UITabBarItem(title: "🛎 Notifications", image: nil, tag: 0)
     
-    // Just for visual debug
+    // Temp: Just for visual debug
     homeVC.view.backgroundColor = UIColor.white
     localVC.view.backgroundColor = UIColor.red
     notificationsVC.view.backgroundColor = UIColor.cyan
     
-    let controllers = [homeVC, localVC, notificationsVC]
     
+    // Add a UINavigationController to each VC in the Tab
+    let controllers = [homeVC, localVC, notificationsVC]
     tabBarController.viewControllers = controllers.map {
         UINavigationController(rootViewController: $0)
     }
     
+    // Make the TabBar the root controller 🎉
     let rootNavigationController = tabBarController
 
     window?.rootViewController = rootNavigationController
