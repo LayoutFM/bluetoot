@@ -14,6 +14,8 @@
 		9CFDDF11212CE06F007FC2DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDDF0F212CE06F007FC2DF /* LaunchScreen.storyboard */; };
 		9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF1A212D0CAB007FC2DF /* ClientManager.swift */; };
 		9CFDDF1D212D11B0007FC2DF /* TootsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */; };
+		9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF20212D9184007FC2DF /* Coordinator.swift */; };
+		9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF22212D91BE007FC2DF /* RootCoordinator.swift */; };
 		A40CF7B663EC3E8FA3694644 /* Pods_BlueToot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCEA9B521743CCA2C065011 /* Pods_BlueToot.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		9CFDDF12212CE06F007FC2DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CFDDF1A212D0CAB007FC2DF /* ClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientManager.swift; sourceTree = "<group>"; };
 		9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootsTableViewController.swift; sourceTree = "<group>"; };
+		9CFDDF20212D9184007FC2DF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9CFDDF22212D91BE007FC2DF /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		A3D158A05994C634D6289FD6 /* Pods-BlueToot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueToot/Pods-BlueToot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +69,8 @@
 		9CFDDF05212CE06C007FC2DF /* BlueToot */ = {
 			isa = PBXGroup;
 			children = (
+				9CFDDF1F212D9152007FC2DF /* Coordinators */,
+				9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */,
 				9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */,
 				9CFDDF08212CE06C007FC2DF /* ViewController.swift */,
 				9CFDDF0A212CE06C007FC2DF /* Main.storyboard */,
@@ -72,9 +78,17 @@
 				9CFDDF0F212CE06F007FC2DF /* LaunchScreen.storyboard */,
 				9CFDDF12212CE06F007FC2DF /* Info.plist */,
 				9CFDDF1A212D0CAB007FC2DF /* ClientManager.swift */,
-				9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */,
 			);
 			path = BlueToot;
+			sourceTree = "<group>";
+		};
+		9CFDDF1F212D9152007FC2DF /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				9CFDDF20212D9184007FC2DF /* Coordinator.swift */,
+				9CFDDF22212D91BE007FC2DF /* RootCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		D59A4C92E163299AADC1B69F /* Pods */ = {
@@ -210,7 +224,9 @@
 			files = (
 				9CFDDF09212CE06C007FC2DF /* ViewController.swift in Sources */,
 				9CFDDF1D212D11B0007FC2DF /* TootsTableViewController.swift in Sources */,
+				9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */,
 				9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */,
+				9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */,
 				9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

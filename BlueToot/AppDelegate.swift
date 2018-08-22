@@ -18,12 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
     let rootNavigationController = UINavigationController()
-
-    let clientManager = ClientManager(baseURL: "https://mastodon.design")
-        clientManager.authorize(viewController: rootNavigationController) {
-          let viewController = TootsTableViewController(client: clientManager.client)
-          rootNavigationController.pushViewController(viewController, animated: false)
-        }
+    let coordinator = RootCoordinator(with: rootNavigationController)
+        coordinator.start()
 
     window?.rootViewController = rootNavigationController
     window?.backgroundColor = .white
