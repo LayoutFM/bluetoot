@@ -9,50 +9,62 @@ import UIKit
 import MastodonKit
 
 class ComposeTootViewController: UIViewController, UITextViewDelegate {
-//    let client: Client
-    var composedToot = String()
-    
-//    init(client: Client) {
-//        self.client = client
-//    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .white // Otherwise the transition glitches
+  let client: Client
 
-        print("🆒 Loaded the Compose Toot View")
-        
-        // Create text field
-        let textFieldWidth = Double((self.view.frame.width) - 40)
-        let tootTextField = UITextView(frame: CGRect(x: 20, y: 100, width: textFieldWidth, height: 200))
-        
-        tootTextField.delegate = self
-        tootTextField.text = "Sent from BlueToot."
-        tootTextField.textColor = UIColor.lightGray
-        tootTextField.font = UIFont.systemFont(ofSize: 15)
-        tootTextField.isSelectable = true
-        tootTextField.dataDetectorTypes = UIDataDetectorTypes.link
-        tootTextField.autocorrectionType = UITextAutocorrectionType.yes
-        tootTextField.autocapitalizationType = UITextAutocapitalizationType.sentences
-        tootTextField.layer.borderColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.00).cgColor
-        tootTextField.layer.borderWidth = 2.0
-        tootTextField.layer.cornerRadius = 5
-        tootTextField.textContainerInset = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
-        self.view.addSubview(tootTextField)
-        
-        // Set up the Toot/Submit button in the Navigation Bar
-        let tootButton = UIBarButtonItem(title: "Toot", style: .done, target: self, action: #selector(postNewToot))
-        self.navigationItem.rightBarButtonItem = tootButton
-    }
+  lazy var tootTextView: UITextView = {
+    let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.delegate = self
+        textView.text = "Sent from BlueToot"
+        textView.textColor = .lightGray
+        textView.font = .systemFont(ofSize: 15)
+        textView.isSelectable = true
+        textView.dataDetectorTypes = .link
+        textView.autocorrectionType = .yes
+        textView.autocapitalizationType = .sentences
+        textView.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        textView.layer.borderWidth = 1 / UIScreen.main.scale
+        textView.layer.cornerRadius = 5
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
+    return textView
+  }()
+
+  init(client: Client) {
+    self.client = client
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    view.backgroundColor = .white // Otherwise the transition glitches
+
+    view.addSubview(tootTextView)
+    view.addConstraints([
+      tootTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+      tootTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+      tootTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+      tootTextView.heightAnchor.constraint(equalToConstant: 200)
+    ])
+
+    // Set up the Toot/Submit button in the Navigation Bar
+    let tootButton = UIBarButtonItem(title: "Toot", style: .done, target: self, action: #selector(postNewToot))
+    self.navigationItem.rightBarButtonItem = tootButton
+  }
     
     @objc func postNewToot() {
         print("🆒 You pressed the Post button")
-//        let post = Statuses.create(status: self.composedToot)
-//
-//        client.run(post) { error in
-//            // do something with 'status'
-//        }
-        
+        let post = Statuses.create(status: tootTextView.text)
+
+        client.run(post) { error in
+          print(error)
+            // do something with 'status'
+        }
+
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -61,15 +73,5 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
             textView.textColor = UIColor.black
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

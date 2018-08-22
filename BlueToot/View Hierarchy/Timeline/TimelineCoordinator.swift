@@ -31,8 +31,11 @@ class TimelineCoordinator: Coordinator {
 
 extension TimelineCoordinator: TootsDelegate {
   func didPressToot(button: UIButton) {
+    guard let client = client else { return }
+
     let composeNavigationController = UINavigationController()
     let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.client = client
         composeCoordinator.start()
     navigationController.present(composeNavigationController, animated: true, completion: nil)
   }

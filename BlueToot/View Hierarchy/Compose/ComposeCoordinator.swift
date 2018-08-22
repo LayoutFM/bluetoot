@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import MastodonKit
 
 class ComposeCoordinator: Coordinator {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
+  var client: Client?
 
   init(with navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
 
   func start() {
-    let viewController = ComposeTootViewController()
+    guard let client = client else { return }
+    let viewController = ComposeTootViewController(client: client)
     navigationController.pushViewController(viewController, animated: false)
   }
 }
