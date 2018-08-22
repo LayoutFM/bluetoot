@@ -26,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Auth and create timeline
     let clientManager = ClientManager(baseURL: "https://mastodon.design")
     clientManager.authorize(viewController: tabBarController) {
-        homeVC = TootsTableViewController(client: clientManager.client)
+        let dataProvider = StatusDataProvider(client: clientManager.client)
+        let dataPresenter = StatusDataPresenter()
+        homeVC = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
     }
     homeVC.title = "Home"
     homeVC.tabBarItem = UITabBarItem(title: "🏠 Home", image: nil, tag: 0)
