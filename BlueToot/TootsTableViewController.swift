@@ -53,9 +53,11 @@ class TootsTableViewController: UITableViewController {
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let status = statuses[indexPath.row]
+    let formattedContent = status.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+
       let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
           cell.textLabel?.numberOfLines = 0
-          cell.textLabel?.text = "\(status.account.displayName): \(status.content)"
+          cell.textLabel?.text = "\(status.account.displayName): \(formattedContent)"
 
       return cell
   }
