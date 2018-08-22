@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import MastodonKit
 
 class NotificationsCoordinator: Coordinator {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
+  var client: Client?
 
   init(with navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
 
   func start() {
+    guard let client = client else { return }
+    
     let viewController = NotificationsTableViewController()
     navigationController.pushViewController(viewController, animated: false)
   }

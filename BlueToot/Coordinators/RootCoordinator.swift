@@ -21,22 +21,30 @@ class RootCoordinator {
   }
 
   func start() {
-    let homeNavigationController = UINavigationController()
-    let homeCoordinator = TimelineCoordinator(with: homeNavigationController)
-        homeCoordinator.start()
+    let clientManager = ClientManager(baseURL: "https://mastodon.design")
 
-    let localNavigationController = UINavigationController()
-    let localCoordinator = LocalCoordinator(with: localNavigationController)
-        localCoordinator.start()
+    clientManager.authorize(viewController: tabBarController) {
+      let timelineNavigationController = UINavigationController()
+      let timelineCoordinator = TimelineCoordinator(with: timelineNavigationController)
+          timelineCoordinator.client = clientManager.client
+          timelineCoordinator.start()
 
-    let notificationsNavigationController = UINavigationController()
-    let notificationsCoordinator = NotificationsCoordinator(with: notificationsNavigationController)
-        notificationsCoordinator.start()
+      let localNavigationController = UINavigationController()
+      let localCoordinator = LocalCoordinator(with: localNavigationController)
+          localCoordinator.client = clientManager.client
+      localCoordinator.start()
 
-    tabBarController.viewControllers = [
-      homeNavigationController,
-      localNavigationController,
-      notificationsNavigationController
-    ]
+      let notificationsNavigationController = UINavigationController()
+      let notificationsCoordinator = NotificationsCoordinator(with: notificationsNavigationController)
+          notificationsCoordinator.client = clientManager.client
+          notificationsCoordinator.start()
+
+      self.tabBarController.viewControllers = [
+        timelineNavigationController,
+        localNavigationController,
+        notificationsNavigationController
+      ]
+    }
+
   }
 }
