@@ -8,8 +8,9 @@
 
 import UIKit
 import MastodonKit
+import SafariServices
 
-class TimelineCoordinator: Coordinator, PresentableCoordinatorDelegate {
+class TimelineCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
 
@@ -18,7 +19,10 @@ class TimelineCoordinator: Coordinator, PresentableCoordinatorDelegate {
   }
 
   func start() {
-    let viewController = TootsTableViewController(provider: StatusDataProvider(), presenter: StatusDataPresenter())
+    let dataProvider = StatusDataProvider()
+    let dataPresenter = StatusDataPresenter()
+        dataPresenter.delegate = self
+    let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
         viewController.delegate = self
     self.navigationController.pushViewController(viewController, animated: false)
   }
@@ -34,5 +38,13 @@ extension TimelineCoordinator: TootsDelegate {
     childCoordinators.append(composeCoordinator)
 
     navigationController.present(composeNavigationController, animated: true, completion: nil)
+  }
+}
+
+extension TimelineCoordinator: UITextViewDelegate {
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    let safariVC = SFSafariViewController(url: URL)
+    navigationController.present(safariVC, animated: true, completion: nil)
+    return false
   }
 }
