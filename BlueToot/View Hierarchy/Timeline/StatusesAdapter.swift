@@ -10,17 +10,12 @@ import UIKit
 import MastodonKit
 
 class StatusDataProvider: ArrayDataProvider {
-  let client: Client
   var items: [Any] = []
-
-  init(client: Client) {
-    self.client = client
-  }
 
   func loadData(completion: (() -> Void)?) {
     let homeRequest = Timelines.home()
 
-    client.run(homeRequest) { result in
+    Mastodon.client.run(homeRequest) { result in
       guard let statuses = result.value else { return }
 
       DispatchQueue.main.async {

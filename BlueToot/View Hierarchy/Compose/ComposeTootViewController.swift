@@ -14,7 +14,6 @@ protocol ComposeTootDelegate {
 }
 
 class ComposeTootViewController: UIViewController, UITextViewDelegate {
-  let client: Client
   var delegate: ComposeTootDelegate?
 
   lazy var tootTextView: UITextView = {
@@ -27,15 +26,6 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
         textView.becomeFirstResponder()
     return textView
   }()
-
-  init(client: Client) {
-    self.client = client
-    super.init(nibName: nil, bundle: nil)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()

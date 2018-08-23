@@ -12,15 +12,12 @@ import MastodonKit
 class LocalCoordinator: Coordinator {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
-  var client: Client?
 
   init(with navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
 
   func start() {
-    guard let client = client else { return }
-
     let viewController = LocalTableViewController()
     navigationController.pushViewController(viewController, animated: false)
   }

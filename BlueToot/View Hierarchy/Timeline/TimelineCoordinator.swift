@@ -12,18 +12,13 @@ import MastodonKit
 class TimelineCoordinator: Coordinator, PresentableCoordinatorDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
-  var client: Client?
 
   init(with navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
 
   func start() {
-    guard let client = client else { return }
-
-    let dataProvider = StatusDataProvider(client: client)
-    let dataPresenter = StatusDataPresenter()
-    let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
+    let viewController = TootsTableViewController(provider: StatusDataProvider(), presenter: StatusDataPresenter())
         viewController.delegate = self
     self.navigationController.pushViewController(viewController, animated: false)
   }
@@ -31,11 +26,8 @@ class TimelineCoordinator: Coordinator, PresentableCoordinatorDelegate {
 
 extension TimelineCoordinator: TootsDelegate {
   func didPressToot(button: UIButton) {
-    guard let client = client else { return }
-
     let composeNavigationController = UINavigationController()
     let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-        composeCoordinator.client = client
         composeCoordinator.delegate = self
         composeCoordinator.start()
 

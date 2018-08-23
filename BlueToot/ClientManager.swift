@@ -10,6 +10,15 @@ import UIKit
 import OAuthSwift
 import MastodonKit
 
+class Mastodon {
+  static var client: Client {
+    return Client(
+      baseURL: "https://mastodon.design",
+      accessToken: UserDefaults.standard.value(forKey: "oauthToken") as? String
+    )
+  }
+}
+
 class ClientManager {
   private let baseURL: String
   private var oauth: OAuth2Swift!
