@@ -9,7 +9,7 @@
 import UIKit
 import MastodonKit
 
-class TimelineCoordinator: Coordinator {
+class TimelineCoordinator: Coordinator, PresentableCoordinatorDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
   var client: Client?
@@ -36,7 +36,11 @@ extension TimelineCoordinator: TootsDelegate {
     let composeNavigationController = UINavigationController()
     let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
         composeCoordinator.client = client
+        composeCoordinator.delegate = self
         composeCoordinator.start()
+
+    childCoordinators.append(composeCoordinator)
+
     navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
 }

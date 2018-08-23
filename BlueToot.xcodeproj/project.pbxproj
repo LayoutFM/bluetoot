@@ -102,8 +102,8 @@
 		9C236507212E1E130016E7F7 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
-				9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */,
 				9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */,
+				9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */,
 			);
 			path = Compose;
 			sourceTree = "<group>";

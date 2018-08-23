@@ -8,24 +8,23 @@
 import UIKit
 import MastodonKit
 
+protocol ComposeTootDelegate {
+  func didPressCancel(button: UIBarButtonItem)
+  func post(status: String)
+}
+
 class ComposeTootViewController: UIViewController, UITextViewDelegate {
   let client: Client
+  var delegate: ComposeTootDelegate?
 
   lazy var tootTextView: UITextView = {
     let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.delegate = self
-        textView.text = "Sent from BlueToot"
-        textView.textColor = .lightGray
-        textView.font = .systemFont(ofSize: 15)
-        textView.isSelectable = true
+        textView.font = .systemFont(ofSize: 17)
         textView.dataDetectorTypes = .link
-        textView.autocorrectionType = .yes
-        textView.autocapitalizationType = .sentences
-        textView.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
-        textView.layer.borderWidth = 1 / UIScreen.main.scale
-        textView.layer.cornerRadius = 5
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
+        textView.textContainerInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        textView.becomeFirstResponder()
     return textView
   }()
 
@@ -41,6 +40,8 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    title = "Compose"
+
     view.backgroundColor = .white // Otherwise the transition glitches
 
     view.addSubview(tootTextView)
@@ -53,25 +54,23 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
 
     // Set up the Toot/Submit button in the Navigation Bar
     let tootButton = UIBarButtonItem(title: "Toot", style: .done, target: self, action: #selector(postNewToot))
-    self.navigationItem.rightBarButtonItem = tootButton
+    navigationItem.rightBarButtonItem = tootButton
+
+    let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didPressCancel(button:)))
+    navigationItem.leftBarButtonItem = cancelButton
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.view.endEditing(true)
+  }
+
+  @objc func didPressCancel(button: UIBarButtonItem) {
+    delegate?.didPressCancel(button: button)
   }
     
-    @objc func postNewToot() {
-        print("🆒 You pressed the Post button")
-        let post = Statuses.create(status: tootTextView.text)
-
-        client.run(post) { error in
-          print(error)
-            // do something with 'status'
-        }
-
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
+  @objc func postNewToot() {
+    delegate?.post(status: tootTextView.text)
+  }
 
 }
