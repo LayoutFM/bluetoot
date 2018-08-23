@@ -40,6 +40,58 @@ class StatusDataPresenter: TableViewDataPresenter {
     cell.userNameLabel.text = status.account.displayName
     cell.contentLabel.text = formattedContent
 
+    let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.2
+
+    let normalAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 17),
+      .paragraphStyle: paragraphStyle
+    ]
+
+    let attributedString = NSMutableAttributedString(string: formattedContent, attributes: normalAttributes)
+
+    let regex = try! NSRegularExpression(pattern: "@\\S*", options: [])
+
+    let range = NSRange(location: 0, length: formattedContent.utf16.count)
+
+    for match in regex.matches(in: formattedContent, options: [], range: range) {
+      attributedString.addAttribute(.link, value: "http://google.com", range: match.range)
+    }
+
+//    if let substringRange = formattedContent.range(of: "@rafa") {
+//      let nsRange = NSRange(substringRange, in: formattedContent)
+//      attributedString.addAttribute(.link, value: "http://google.com", range: nsRange)
+//    }
+
+
+
+
+    let linkAttributes: [NSAttributedString.Key: Any] = [
+      .foregroundColor: cell.tintColor,
+      .font: UIFont.systemFont(ofSize: 27)
+    ]
+
+
+
+    cell.contentLabel.linkTextAttributes = linkAttributes
+    cell.contentLabel.attributedText = attributedString
+
+//
+//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"This is an example by @marcelofabri_"];
+//    [attributedString addAttribute:NSLinkAttributeName
+//      value:@"username://marcelofabri_"
+//      range:[[attributedString string] rangeOfString:@"@marcelofabri_"]];
+//
+//
+//    NSDictionary *linkAttributes = @{NSForegroundColorAttributeName: [UIColor greenColor],
+//      NSUnderlineColorAttributeName: [UIColor lightGrayColor],
+//      NSUnderlineStyleAttributeName: @(NSUnderlinePatternSolid)};
+
+//    // assume that textView is a UITextView previously created (either by code or Interface Builder)
+//    textView.linkTextAttributes = linkAttributes; // customizes the appearance of links
+//    textView.attributedText = attributedString;
+//    textView.delegate = self;
+
     return cell
   }
 }

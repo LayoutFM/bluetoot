@@ -16,11 +16,20 @@ class StatusTableViewCell: UITableViewCell {
     return label
   }()
 
-  lazy var contentLabel: UILabel = {
-    let label = UILabel()
-        label.numberOfLines = 0
-    return label
+  lazy var contentLabel: UITextView = {
+    let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.font = UIFont.systemFont(ofSize: 17)
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+        textView.isEditable = false
+    return textView
   }()
+
+//  lazy var contentLabel: UILabel = {
+//    let label = UILabel()
+//        label.numberOfLines = 0
+//    return label
+//  }()
 
   lazy var mainStackView: UIStackView = {
     let stackView = UIStackView(arrangedSubviews: [userNameLabel, contentLabel])
