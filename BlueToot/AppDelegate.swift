@@ -15,21 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-    let rootNavigationController = UINavigationController()
-    let coordinator = RootCoordinator(with: rootNavigationController)
-        coordinator.start()
-
-    window?.rootViewController = rootNavigationController
-    window?.backgroundColor = .white
-    window?.makeKeyAndVisible()
+    let rootCoordinator = RootCoordinator(window: window)
+        rootCoordinator.start()
 
     return true
   }
 
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     if (url.host == "oauth-callback") {
-      print(url)
       OAuthSwift.handle(url: url)
     }
     return true

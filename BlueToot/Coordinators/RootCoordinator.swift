@@ -8,21 +8,42 @@
 
 import UIKit
 
-class RootCoordinator: Coordinator {
-  var navigationController: UINavigationController
-  var childCoordinators = [Coordinator]()
+class RootCoordinator {
+  var window: UIWindow?
+  let tabBarController = UITabBarController()
 
-  init(with navigationController: UINavigationController) {
-    self.navigationController = navigationController
+  init(window: UIWindow?) {
+    self.window = window
+
+    window?.rootViewController = tabBarController
+    window?.backgroundColor = .white
+    window?.makeKeyAndVisible()
   }
 
   func start() {
     let clientManager = ClientManager(baseURL: "https://mastodon.design")
-        clientManager.authorize(viewController: navigationController) {
-          let dataProvider = StatusDataProvider(client: clientManager.client)
-          let dataPresenter = StatusDataPresenter()
-          let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
-          self.navigationController.pushViewController(viewController, animated: false)
-        }
+
+    clientManager.authorize(viewController: tabBarController) {
+      let timelineNavigationController = UINavigationController()
+      let timelineCoordinator = TimelineCoordinator(with: timelineNavigationController)
+          timelineCoordinator.client = clientManager.client
+          timelineCoordinator.start()
+
+      let localNavigationController = UINavigationController()
+      let localCoordinator = LocalCoordinator(with: localNavigationController)
+          localCoordinator.client = clientManager.client
+      localCoordinator.start()
+
+      let notificationsNavigationController = UINavigationController()
+      let notificationsCoordinator = NotificationsCoordinator(with: notificationsNavigationController)
+          notificationsCoordinator.client = clientManager.client
+          notificationsCoordinator.start()
+
+      self.tabBarController.viewControllers = [
+        timelineNavigationController,
+        localNavigationController,
+        notificationsNavigationController
+      ]
+    }
   }
 }

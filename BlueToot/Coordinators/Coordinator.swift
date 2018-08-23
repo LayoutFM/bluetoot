@@ -15,6 +15,13 @@ protocol Coordinator {
   func start()
 }
 
-protocol PresentableCoordinatorDelegate {
-  func didFinishPresenting(coordinator: Coordinator)
+protocol PresentableCoordinatorDelegate: Coordinator {
+  mutating func didFinishPresenting(coordinator: Coordinator)
+}
+
+extension PresentableCoordinatorDelegate {
+  mutating func didFinishPresenting(coordinator: Coordinator) {
+    coordinator.navigationController.dismiss(animated: true, completion: nil)
+    childCoordinators.removeLast()
+  }
 }
