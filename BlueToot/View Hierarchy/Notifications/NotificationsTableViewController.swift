@@ -12,7 +12,7 @@ class NotificationsTableViewController: UITableViewController {
   init() {
     super.init(style: .plain)
     title = "Notifications"
-    tabBarItem = UITabBarItem(title: "Notifications", image: nil, tag: 0)
+    tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "notifications"), tag: 0)
   }
 
   required init?(coder aDecoder: NSCoder) {

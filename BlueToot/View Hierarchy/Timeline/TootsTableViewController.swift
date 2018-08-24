@@ -19,8 +19,8 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     super.viewDidLoad()
 
     title = "Timeline"
-    tabBarItem = UITabBarItem(title: "Home", image: nil, tag: 0)
-
+    tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "timeline"), tag: 0)
+    
     // Set up pull-to-refresh
     let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -29,6 +29,8 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     // Set up the New Toot button in the Navigation Bar
     let tootButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didPressToot(button:)))
     self.navigationItem.rightBarButtonItem = tootButton
+
+    tableView.separatorInset.left = 80
   }
   
   @objc func didPressToot(button: UIButton) {
