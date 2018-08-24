@@ -22,7 +22,18 @@ class TootFormatter {
   }
 
   func stripHTML(from string: String) -> String {
-    return string.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    var newString = string
+
+    // Insert lines when there's a new paragraph
+    newString = newString.replacingOccurrences(of: "</p><p>", with: "\n\n", options: .regularExpression, range: nil)
+
+    // Replace <br> with new line
+    newString = newString.replacingOccurrences(of: "<br>", with: "\n", options: .regularExpression, range: nil)
+
+    // Remove HTML tags
+    newString = newString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+
+    return newString
   }
 
   func addLinkAttribute(pattern: String, to attributedString: NSMutableAttributedString) {

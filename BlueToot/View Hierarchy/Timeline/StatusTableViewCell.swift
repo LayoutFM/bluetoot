@@ -38,10 +38,26 @@ class StatusTableViewCell: UITableViewCell {
     return label
   }()
 
+  lazy var timeStampLabel: UILabel = {
+    let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.text = "5m"
+        label.textColor = UIColor(white: 0, alpha: 0.3)
+    return label
+  }()
+
+  lazy var userNameStackView: UIStackView = {
+    let stackView = UIStackView(arrangedSubviews: [userNameLabel, timeStampLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+    return stackView
+  }()
+
   var contentTextView = TootTextView()
 
   lazy var textStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [userNameLabel, contentTextView])
+    let stackView = UIStackView(arrangedSubviews: [userNameStackView, contentTextView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0

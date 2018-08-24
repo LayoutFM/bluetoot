@@ -39,18 +39,16 @@ class StatusDataPresenter: TableViewDataPresenter {
     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! StatusTableViewCell
         cell.userNameLabel.text = status.account.displayName
         cell.contentTextView.text = status.content
+        cell.avatarImageView.downloadImage(from: status.account.avatar)
         cell.contentTextView.delegate = delegate
 
-    let imageURL = URL(string: status.account.avatar)!
-    URLSession.shared.dataTask(with: imageURL) { data, response, error in
-      guard let data = data else { return }
+    let timeInterval = Date().timeIntervalSince(status.createdAt)
+    let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.minute, .hour, .day]
+        formatter.maximumUnitCount = 1
 
-      let image = UIImage(data: data)
-      DispatchQueue.main.async() {
-        cell.avatarImageView.image = image
-      }
-    }.resume()
-
+    cell.timeStampLabel.text = formatter.string(from: timeInterval)
 
     return cell
   }

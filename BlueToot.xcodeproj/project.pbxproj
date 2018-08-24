@@ -16,6 +16,7 @@
 		9C23650B212E260B0016E7F7 /* ComposeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */; };
 		9C58487C212EE13B00B78C8C /* TootFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58487B212EE13B00B78C8C /* TootFormatter.swift */; };
 		9C58487E212EED8800B78C8C /* TootTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58487D212EED8800B78C8C /* TootTextView.swift */; };
+		9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C846DB6212FA4E500F164FC /* Extensions.swift */; };
 		9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */; };
 		9CFDDF0C212CE06C007FC2DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDDF0A212CE06C007FC2DF /* Main.storyboard */; };
 		9CFDDF0E212CE06F007FC2DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDDF0D212CE06F007FC2DF /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeCoordinator.swift; sourceTree = "<group>"; };
 		9C58487B212EE13B00B78C8C /* TootFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootFormatter.swift; sourceTree = "<group>"; };
 		9C58487D212EED8800B78C8C /* TootTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootTextView.swift; sourceTree = "<group>"; };
+		9C846DB6212FA4E500F164FC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9CFDDF03212CE06C007FC2DF /* BlueToot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueToot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CFDDF0B212CE06C007FC2DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				9CFDDF0F212CE06F007FC2DF /* LaunchScreen.storyboard */,
 				9CFDDF12212CE06F007FC2DF /* Info.plist */,
 				9CFDDF1A212D0CAB007FC2DF /* ClientManager.swift */,
+				9C846DB6212FA4E500F164FC /* Extensions.swift */,
 			);
 			path = BlueToot;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */,
 				9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */,
 				9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */,
+				9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */,
 				9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */,
 				9C2364FB212DEB130016E7F7 /* NotificationsCoordinator.swift in Sources */,
 				9C58487C212EE13B00B78C8C /* TootFormatter.swift in Sources */,
