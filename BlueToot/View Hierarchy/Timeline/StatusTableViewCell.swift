@@ -57,11 +57,24 @@ class StatusTableViewCell: UITableViewCell {
   var contentTextView = TootTextView()
 
   lazy var textStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [userNameStackView, contentTextView])
+    let stackView = UIStackView(arrangedSubviews: [userNameStackView, contentTextView, attachmentImageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0
+        stackView.setCustomSpacing(15, after: contentTextView)
     return stackView
+  }()
+
+  lazy var attachmentImageView: UIImageView = {
+    let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+    imageView.addConstraints([
+      imageView.heightAnchor.constraint(equalToConstant: 200)
+    ])
+    return imageView
   }()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

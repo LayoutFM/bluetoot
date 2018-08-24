@@ -42,6 +42,12 @@ class StatusDataPresenter: TableViewDataPresenter {
         cell.avatarImageView.downloadImage(from: status.account.avatar)
         cell.contentTextView.delegate = delegate
 
+    cell.attachmentImageView.isHidden = true
+    for attachment in status.mediaAttachments {
+      cell.attachmentImageView.downloadImage(from: attachment.previewURL)
+      cell.attachmentImageView.isHidden = false
+    }
+
     let timeInterval = Date().timeIntervalSince(status.createdAt)
     let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
