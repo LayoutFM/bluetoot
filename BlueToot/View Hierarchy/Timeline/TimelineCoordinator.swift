@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MastodonKit
 
 class TimelineCoordinator: Coordinator, PresentableCoordinatorDelegate {
   var navigationController: UINavigationController
