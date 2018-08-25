@@ -9,6 +9,7 @@
 import UIKit
 
 class NotificationsTableViewController: TableViewControllerWithDataAdapter {
+
   init() {
     super.init(coder: .plain)
     title = "Notifications"
