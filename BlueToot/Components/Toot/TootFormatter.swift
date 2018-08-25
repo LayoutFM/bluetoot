@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HTMLString
 
 class TootFormatter {
   var attributes: [NSAttributedString.Key: Any]?
@@ -23,6 +24,8 @@ class TootFormatter {
 
   func stripHTML(from string: String) -> String {
     var newString = string
+
+    newString = newString.removingHTMLEntities
 
     // Insert lines when there's a new paragraph
     newString = newString.replacingOccurrences(of: "</p><p>", with: "\n\n", options: .regularExpression, range: nil)
