@@ -2,15 +2,15 @@
 //  NotificationsTableViewController.swift
 //  BlueToot
 //
-//  Created by Kevin Clark on 8/22/18.
+//  Created by Rafael Conde on 8/24/18.
 //  Copyright © 2018 Kevin Clark. All rights reserved.
 //
 
 import UIKit
 
-class NotificationsTableViewController: UITableViewController {
+class NotificationsTableViewController: TableViewControllerWithDataAdapter {
   init() {
-    super.init(style: .plain)
+    super.init(coder: .plain)
     title = "Notifications"
     tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "notifications"), tag: 0)
   }
@@ -21,7 +21,11 @@ class NotificationsTableViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    view.backgroundColor = .cyan
+    
+    // Set up pull-to-refresh
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    tableView.refreshControl = refreshControl
   }
 }
+
