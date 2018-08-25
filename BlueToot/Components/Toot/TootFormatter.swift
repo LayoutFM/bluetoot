@@ -25,6 +25,7 @@ class TootFormatter {
   func stripHTML(from string: String) -> String {
     var newString = string
 
+    // Remove HTML Entites like &amp;
     newString = newString.removingHTMLEntities
 
     // Insert lines when there's a new paragraph
