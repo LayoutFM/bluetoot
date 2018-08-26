@@ -19,7 +19,7 @@ class NotificationsCoordinator: Coordinator {
 
   func start() {
     let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: NotificationsDataPresenter())
-    viewController.delegate = self
+//    viewController.delegate = self
     self.navigationController.pushViewController(viewController, animated: false)
   }
 }

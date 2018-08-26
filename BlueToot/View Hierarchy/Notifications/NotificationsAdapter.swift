@@ -34,13 +34,25 @@ class NotificationsDataPresenter: TableViewDataPresenter {
   }
   
   func cell(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
-    guard let notification = item as? Notification else { fatalError() }
+    guard let notification = item as? MastodonKit.Notification else { fatalError() }
     
-//    let formattedContent = notification.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-//
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "notiIdentifier", for: indexPath) as! NotificationTableViewCell
-//    cell.contentLabel.text = formattedContent
-//
-//    return cell
+    let formattedContent = notification.status?.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "notiIdentifier", for: indexPath) as! NotificationTableViewCell
+    
+    cell.contentLabel.text = formattedContent
+    cell.userNameLabel.text = notification.account.username
+    switch notification.type {
+      case .favourite:
+          cell.notificationType.text = "Favorited ♥"
+      case .follow:
+          cell.notificationType.text = "Followed you"
+      case .mention:
+          cell.notificationType.text = "Mentioned you in a toot"
+      case .reblog:
+          cell.notificationType.text = "Boosted your toot"
+    }
+
+    return cell
   }
 }
