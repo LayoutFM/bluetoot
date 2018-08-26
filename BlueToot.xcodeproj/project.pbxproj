@@ -28,6 +28,8 @@
 		9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */; };
 		9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */; };
 		A40CF7B663EC3E8FA3694644 /* Pods_BlueToot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCEA9B521743CCA2C065011 /* Pods_BlueToot.framework */; };
+		DE189EB521330E8F0007BECF /* NotificationsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE189EB421330E8F0007BECF /* NotificationsAdapter.swift */; };
+		DE189EB721330EA40007BECF /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE189EB621330EA40007BECF /* NotificationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerWithAdapter.swift; sourceTree = "<group>"; };
 		9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesAdapter.swift; sourceTree = "<group>"; };
 		A3D158A05994C634D6289FD6 /* Pods-BlueToot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueToot/Pods-BlueToot.debug.xcconfig"; sourceTree = "<group>"; };
+		DE189EB421330E8F0007BECF /* NotificationsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsAdapter.swift; sourceTree = "<group>"; };
+		DE189EB621330EA40007BECF /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +89,9 @@
 			isa = PBXGroup;
 			children = (
 				9C2364FA212DEB130016E7F7 /* NotificationsCoordinator.swift */,
+				DE189EB421330E8F0007BECF /* NotificationsAdapter.swift */,
 				9C2364FC212DEB7A0016E7F7 /* NotificationsTableViewController.swift */,
+				DE189EB621330EA40007BECF /* NotificationTableViewCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 				9CFDDF2B212D9E23007FC2DF /* DataPresenter.swift in Sources */,
 				9CFDDF1D212D11B0007FC2DF /* TootsTableViewController.swift in Sources */,
 				9C2364FD212DEB7A0016E7F7 /* NotificationsTableViewController.swift in Sources */,
+				DE189EB721330EA40007BECF /* NotificationTableViewCell.swift in Sources */,
 				9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */,
 				9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */,
 				9CFDDF26212D9460007FC2DF /* StatusTableViewCell.swift in Sources */,
@@ -317,6 +324,7 @@
 				9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */,
 				9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */,
 				9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */,
+				DE189EB521330E8F0007BECF /* NotificationsAdapter.swift in Sources */,
 				9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */,
 				9C2364FB212DEB130016E7F7 /* NotificationsCoordinator.swift in Sources */,
 				9C236504212DEE090016E7F7 /* TimelineCoordinator.swift in Sources */,

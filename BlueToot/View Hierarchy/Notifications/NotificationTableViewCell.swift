@@ -10,11 +10,18 @@ import UIKit
 
 class NotificationTableViewCell: UITableViewCell {
   
-  lazy var userNameLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.boldSystemFont(ofSize: 17)
-    return label
-  }()
+    lazy var notificationType: UILabel = {
+      let label = UILabel()
+      label.font = UIFont.boldSystemFont(ofSize: 12)
+      label.layer.opacity = 0.5
+      return label
+    }()
+    
+    lazy var userNameLabel: UILabel = {
+      let label = UILabel()
+      label.font = UIFont.boldSystemFont(ofSize: 17)
+      return label
+    }()
   
   lazy var contentLabel: UILabel = {
     let label = UILabel()
@@ -23,7 +30,7 @@ class NotificationTableViewCell: UITableViewCell {
   }()
   
   lazy var mainStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [userNameLabel, contentLabel])
+    let stackView = UIStackView(arrangedSubviews: [notificationType, userNameLabel, contentLabel])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.spacing = 5
