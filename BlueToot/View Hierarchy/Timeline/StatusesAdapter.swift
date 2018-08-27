@@ -37,24 +37,14 @@ class StatusDataPresenter: TableViewDataPresenter {
     guard let status = item as? Status else { fatalError() }
 
     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! StatusTableViewCell
+        cell.contentTextView.delegate = delegate
         cell.userNameLabel.text = status.account.displayName
         cell.contentTextView.text = status.content
         cell.avatarImageView.downloadImage(from: status.account.avatar)
-        cell.contentTextView.delegate = delegate
-
-    cell.attachmentImageView.isHidden = true
-    for attachment in status.mediaAttachments {
-      cell.attachmentImageView.downloadImage(from: attachment.previewURL)
-      cell.attachmentImageView.isHidden = false
-    }
-
-    let timeInterval = Date().timeIntervalSince(status.createdAt)
-    let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.minute, .hour, .day]
-        formatter.maximumUnitCount = 1
-
-    cell.timeStampLabel.text = formatter.string(from: timeInterval)
+        cell.timeStampLabel.text = TootTimeFormatter().string(from: status.createdAt)
+        cell.imageGalleryView.images = status.mediaAttachments.map({ (attachment) -> String in
+          return attachment.previewURL
+        })
 
     return cell
   }

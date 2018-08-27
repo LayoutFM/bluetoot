@@ -14,9 +14,11 @@
 		9C236504212DEE090016E7F7 /* TimelineCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236503212DEE090016E7F7 /* TimelineCoordinator.swift */; };
 		9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */; };
 		9C23650B212E260B0016E7F7 /* ComposeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */; };
+		9C285F1B2131BFB7006B0118 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C285F1A2131BFB7006B0118 /* ImageGalleryView.swift */; };
 		9C58487C212EE13B00B78C8C /* TootFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58487B212EE13B00B78C8C /* TootFormatter.swift */; };
 		9C58487E212EED8800B78C8C /* TootTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58487D212EED8800B78C8C /* TootTextView.swift */; };
 		9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C846DB6212FA4E500F164FC /* Extensions.swift */; };
+		9CAB7C6C213464CA00C24450 /* TootTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */; };
 		9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */; };
 		9CFDDF0C212CE06C007FC2DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDDF0A212CE06C007FC2DF /* Main.storyboard */; };
 		9CFDDF0E212CE06F007FC2DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDDF0D212CE06F007FC2DF /* Assets.xcassets */; };
@@ -43,9 +45,11 @@
 		9C236503212DEE090016E7F7 /* TimelineCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCoordinator.swift; sourceTree = "<group>"; };
 		9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTootViewController.swift; sourceTree = "<group>"; };
 		9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeCoordinator.swift; sourceTree = "<group>"; };
+		9C285F1A2131BFB7006B0118 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
 		9C58487B212EE13B00B78C8C /* TootFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootFormatter.swift; sourceTree = "<group>"; };
 		9C58487D212EED8800B78C8C /* TootTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootTextView.swift; sourceTree = "<group>"; };
 		9C846DB6212FA4E500F164FC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootTimeFormatter.swift; sourceTree = "<group>"; };
 		9CFDDF03212CE06C007FC2DF /* BlueToot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueToot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CFDDF0B212CE06C007FC2DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				9C584880212F125D00B78C8C /* Toot */,
+				9CAB7C6A2134649700C24450 /* ImageGalleryView */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -127,8 +132,17 @@
 			children = (
 				9C58487B212EE13B00B78C8C /* TootFormatter.swift */,
 				9C58487D212EED8800B78C8C /* TootTextView.swift */,
+				9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */,
 			);
 			path = Toot;
+			sourceTree = "<group>";
+		};
+		9CAB7C6A2134649700C24450 /* ImageGalleryView */ = {
+			isa = PBXGroup;
+			children = (
+				9C285F1A2131BFB7006B0118 /* ImageGalleryView.swift */,
+			);
+			path = ImageGalleryView;
 			sourceTree = "<group>";
 		};
 		9CFDDEFA212CE06C007FC2DF = {
@@ -339,6 +353,7 @@
 				9C2364FD212DEB7A0016E7F7 /* NotificationsTableViewController.swift in Sources */,
 				9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */,
 				9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */,
+				9C285F1B2131BFB7006B0118 /* ImageGalleryView.swift in Sources */,
 				9CFDDF26212D9460007FC2DF /* StatusTableViewCell.swift in Sources */,
 				9CFDDF29212D9DC8007FC2DF /* DataProvider.swift in Sources */,
 				9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */,
@@ -350,6 +365,7 @@
 				9C2364FB212DEB130016E7F7 /* NotificationsCoordinator.swift in Sources */,
 				9C58487C212EE13B00B78C8C /* TootFormatter.swift in Sources */,
 				9C236504212DEE090016E7F7 /* TimelineCoordinator.swift in Sources */,
+				9CAB7C6C213464CA00C24450 /* TootTimeFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +513,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DW5Q9T99C;
 				INFOPLIST_FILE = BlueToot/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinclark.BlueToot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -513,7 +532,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DW5Q9T99C;
 				INFOPLIST_FILE = BlueToot/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinclark.BlueToot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
