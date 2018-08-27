@@ -27,6 +27,8 @@ class StatusDataProvider: ArrayDataProvider {
 }
 
 class StatusDataPresenter: TableViewDataPresenter {
+  var delegate: UITextViewDelegate?
+
   func registerCells(for tableView: UITableView) {
     tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
   }
@@ -34,11 +36,13 @@ class StatusDataPresenter: TableViewDataPresenter {
   func cell(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
     guard let status = item as? Status else { fatalError() }
 
-    let formattedContent = status.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-
     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! StatusTableViewCell
-    cell.userNameLabel.text = status.account.displayName
-    cell.contentLabel.text = formattedContent
+        cell.contentTextView.delegate = delegate
+        cell.userNameLabel.text = status.account.displayName
+        cell.contentTextView.text = status.content
+        cell.avatarImageView.downloadImage(from: status.account.avatar)
+        cell.timeStampLabel.text = TootTimeFormatter().string(from: status.createdAt)
+        cell.imageGalleryView.images = status.mediaAttachments.map { $0.previewURL }
 
     return cell
   }

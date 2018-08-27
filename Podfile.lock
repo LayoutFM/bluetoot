@@ -1,13 +1,16 @@
 PODS:
+  - HTMLString (4.0.2)
   - MastodonKit (1.0.10)
   - OAuthSwift (1.2.2)
 
 DEPENDENCIES:
+  - HTMLString (~> 4.0)
   - MastodonKit (from `https://github.com/MastodonKit/MastodonKit.git`)
   - OAuthSwift (~> 1.2.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - HTMLString
     - OAuthSwift
 
 EXTERNAL SOURCES:
@@ -20,9 +23,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MastodonKit/MastodonKit.git
 
 SPEC CHECKSUMS:
+  HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
 
-PODFILE CHECKSUM: 9da00dec0942b78a484d1eaef8d2f0dbb2e57765
+PODFILE CHECKSUM: bd9ad5d7d6e22155f9026913e86109b81df15b16
 
 COCOAPODS: 1.5.0
