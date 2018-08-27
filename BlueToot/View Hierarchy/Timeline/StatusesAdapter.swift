@@ -42,9 +42,7 @@ class StatusDataPresenter: TableViewDataPresenter {
         cell.contentTextView.text = status.content
         cell.avatarImageView.downloadImage(from: status.account.avatar)
         cell.timeStampLabel.text = TootTimeFormatter().string(from: status.createdAt)
-        cell.imageGalleryView.images = status.mediaAttachments.map({ (attachment) -> String in
-          return attachment.previewURL
-        })
+        cell.imageGalleryView.images = status.mediaAttachments.map { $0.previewURL }
 
     return cell
   }
