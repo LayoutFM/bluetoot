@@ -28,8 +28,6 @@ class TootFormatter {
     // Remove HTML Entites like &amp;
     newString = newString.removingHTMLEntities
 
-
-
     newString = newString.replacingOccurrences(of: "<span class=\"invisible\"></span>", with: "", options: .regularExpression, range: nil)
 
     // Insert lines when there's a new paragraph
