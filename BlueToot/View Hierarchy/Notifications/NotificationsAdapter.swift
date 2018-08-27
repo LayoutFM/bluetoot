@@ -20,8 +20,6 @@ class NotificationsDataProvider: ArrayDataProvider {
       
       DispatchQueue.main.async {
         self.items = notifications
-        print("⚡️ INCOMING")
-        print(self.items)
         completion?()
       }
     }
@@ -38,10 +36,21 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     
     let formattedContent = notification.status?.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     
+    // Downloading user profile pictures
+    let url = URL(fileURLWithPath: notification.account.avatar)
+    let data = try? Data(contentsOf: url)
+    var userProfilePicture = UIImage()
+    
+    if let imageData = data {
+      userProfilePicture = UIImage(data: imageData) ?? UIImage(named: "defaultUserProfilePicture")!
+    }
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: "notiIdentifier", for: indexPath) as! NotificationTableViewCell
     
     cell.contentLabel.text = formattedContent
     cell.userNameLabel.text = notification.account.username
+    cell.profilePicture.image = userProfilePicture
+    print(userProfilePicture)
     switch notification.type {
       case .favourite:
           cell.notificationType.text = "Favorited ♥"
