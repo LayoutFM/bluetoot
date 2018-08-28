@@ -14,7 +14,7 @@ class NotificationsTableViewController: TableViewControllerWithDataAdapter {
     super.viewDidLoad()
     
     title = "Notifications"
-    tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "notifications"), tag: 0)
+    tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "notifications"), tag: 1)
     
     // Set up pull-to-refresh
     let refreshControl = UIRefreshControl()

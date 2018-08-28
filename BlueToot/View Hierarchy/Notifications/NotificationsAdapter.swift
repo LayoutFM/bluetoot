@@ -36,7 +36,7 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     
     let formattedContent = notification.status?.content.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     
-    // Downloading user profile pictures
+    // Download user profile pictures
     let url = URL(fileURLWithPath: notification.account.avatar)
     let data = try? Data(contentsOf: url)
     var userProfilePicture = UIImage()
@@ -47,10 +47,9 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "notiIdentifier", for: indexPath) as! NotificationTableViewCell
     
-    cell.contentLabel.text = formattedContent
+    cell.contentTextView.text = formattedContent
     cell.userNameLabel.text = notification.account.username
-    cell.profilePicture.image = userProfilePicture
-    print(userProfilePicture)
+    cell.avatarImageView.image = userProfilePicture
     switch notification.type {
       case .favourite:
           cell.notificationType.text = "Favorited ♥"

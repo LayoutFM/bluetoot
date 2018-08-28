@@ -99,9 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				DE9974602134F397005AF8ED /* NotificationsAdapter.swift */,
-				DE9974612134F397005AF8ED /* NotificationTableViewCell.swift */,
 				9C2364FA212DEB130016E7F7 /* NotificationsCoordinator.swift */,
 				9C2364FC212DEB7A0016E7F7 /* NotificationsTableViewController.swift */,
+				DE9974612134F397005AF8ED /* NotificationTableViewCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -199,10 +199,10 @@
 		9CFDDF24212D943E007FC2DF /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */,
 				9C236503212DEE090016E7F7 /* TimelineCoordinator.swift */,
 				9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */,
 				9CFDDF25212D9460007FC2DF /* StatusTableViewCell.swift */,
-				9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";

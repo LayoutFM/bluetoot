@@ -55,7 +55,7 @@ class StatusTableViewCell: UITableViewCell {
   var contentTextView = TootTextView()
 
   lazy var textStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [userNameStackView, contentTextView, imageGalleryView])
+    var stackView = UIStackView(arrangedSubviews: [userNameStackView, contentTextView, imageGalleryView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0
@@ -82,7 +82,6 @@ class StatusTableViewCell: UITableViewCell {
       mainStackView.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor, constant: 2),
       mainStackView.bottomAnchor.constraint(equalTo: contentView.readableContentGuide.bottomAnchor, constant: -5)
     ])
-
   }
 
   required init?(coder aDecoder: NSCoder) {
