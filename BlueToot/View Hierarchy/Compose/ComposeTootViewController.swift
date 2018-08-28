@@ -67,7 +67,8 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
     let statusAuthor = replyToStatus.account.acct
     let mentionedAccountsOnStatus = replyToStatus.mentions.map { $0.acct }
     let allAccounts = [statusAuthor] + mentionedAccountsOnStatus
-    tootTextView.text = allAccounts.map{ "@" + $0 }.reduce("") { $0 + $1 + " " }
+    let allAccountsString = allAccounts.removeDuplicates().map{ "@" + $0 }.reduce("") { $0 + $1 + " " }
+    tootTextView.text = allAccountsString
   }
 
   override func viewWillDisappear(_ animated: Bool) {

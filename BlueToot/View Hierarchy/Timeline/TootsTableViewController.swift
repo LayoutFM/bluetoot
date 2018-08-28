@@ -35,10 +35,23 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     tableView.separatorInset.left = 80
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let status = dataProvider.item(at: indexPath) as! Status
-    delegate?.reply(to: status)
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let action = UIContextualAction(style: .normal, title: "Reply", handler: { (action, view, completionHandler) in
+            let status = self.dataProvider.item(at: indexPath) as! Status
+            self.delegate?.reply(to: status)
+            completionHandler(true)
+    })
+
+    action.image = UIImage(named: "reply")
+    action.backgroundColor = view.tintColor
+    let configuration = UISwipeActionsConfiguration(actions: [action])
+    return configuration
   }
+
+//  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    let status = dataProvider.item(at: indexPath) as! Status
+//    delegate?.reply(to: status)
+//  }
   
   @objc func didPressToot(button: UIButton) {
     delegate?.didPressToot(button: button)
