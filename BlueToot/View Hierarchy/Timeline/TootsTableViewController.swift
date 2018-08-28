@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import MastodonKit
 
 protocol TootsDelegate: AnyObject {
   func didPressToot(button: UIButton)
+  func reply(to status: Status)
 }
 
 class TootsTableViewController: TableViewControllerWithDataAdapter {
@@ -33,6 +35,11 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     tableView.separatorInset.left = 80
   }
 
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let status = dataProvider.item(at: indexPath) as! Status
+    delegate?.reply(to: status)
+  }
+  
   @objc func didPressToot(button: UIButton) {
     delegate?.didPressToot(button: button)
   }

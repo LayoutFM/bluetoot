@@ -39,6 +39,18 @@ extension TimelineCoordinator: TootsDelegate {
 
     navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
+
+  func reply(to status: Status) {
+    let composeNavigationController = UINavigationController()
+    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.replyToStatus = status
+        composeCoordinator.delegate = self
+        composeCoordinator.start()
+
+    childCoordinators.append(composeCoordinator)
+
+    navigationController.present(composeNavigationController, animated: true, completion: nil)
+  }
 }
 
 extension TimelineCoordinator: UITextViewDelegate {
