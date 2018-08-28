@@ -12,6 +12,7 @@ import MastodonKit
 protocol TootsDelegate: AnyObject {
   func didPressToot(button: UIButton)
   func reply(to status: Status)
+  func boost(status: Status)
 }
 
 class TootsTableViewController: TableViewControllerWithDataAdapter {
@@ -36,22 +37,25 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
   }
 
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    let action = UIContextualAction(style: .normal, title: "Reply", handler: { (action, view, completionHandler) in
-            let status = self.dataProvider.item(at: indexPath) as! Status
+    let status = self.dataProvider.item(at: indexPath) as! Status
+
+    let reply = UIContextualAction(style: .normal, title: "Reply") { (action, view, completionHandler) in
             self.delegate?.reply(to: status)
             completionHandler(true)
-    })
+    }
+    reply.image = UIImage(named: "reply")
+    reply.backgroundColor = view.tintColor
 
-    action.image = UIImage(named: "reply")
-    action.backgroundColor = view.tintColor
-    let configuration = UISwipeActionsConfiguration(actions: [action])
+    let boost = UIContextualAction(style: .normal, title: "Boost") { (action, view, completionHandler) in
+      self.delegate?.boost(status: status)
+      completionHandler(true)
+    }
+    boost.image = UIImage(named: "boost")
+    boost.backgroundColor = UIColor(red: 25/255, green: 204/255, blue: 71/255, alpha: 1)
+
+    let configuration = UISwipeActionsConfiguration(actions: [reply, boost])
     return configuration
   }
-
-//  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let status = dataProvider.item(at: indexPath) as! Status
-//    delegate?.reply(to: status)
-//  }
   
   @objc func didPressToot(button: UIButton) {
     delegate?.didPressToot(button: button)

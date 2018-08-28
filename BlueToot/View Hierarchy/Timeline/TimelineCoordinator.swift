@@ -51,6 +51,14 @@ extension TimelineCoordinator: TootsDelegate {
 
     navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
+
+  func boost(status: Status) {
+    let boost = Statuses.reblog(id: status.id)
+
+    Mastodon.client.run(boost) { result in
+      print("You boosted this toot!")
+    }
+  }
 }
 
 extension TimelineCoordinator: UITextViewDelegate {
