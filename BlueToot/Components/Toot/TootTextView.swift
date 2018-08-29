@@ -9,7 +9,6 @@
 import UIKit
 
 class TootTextView: UITextView {
-
   override var text: String! {
     didSet {
       let paragraphStyle = NSMutableParagraphStyle()
@@ -24,7 +23,6 @@ class TootTextView: UITextView {
       attributedText = tootFormatter.mutableAttributedString(from: text)
     }
   }
-
 
   override var canBecomeFirstResponder: Bool {
     return false
