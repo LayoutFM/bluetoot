@@ -13,13 +13,14 @@ class ComposeCoordinator: Coordinator {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
   var delegate: PresentableCoordinatorDelegate?
+  var replyToStatus: Status?
 
   init(with navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
 
   func start() {
-    let viewController = ComposeTootViewController()
+    let viewController = ComposeTootViewController(replyToStatus: replyToStatus)
         viewController.delegate = self
     navigationController.pushViewController(viewController, animated: false)
   }
@@ -30,8 +31,8 @@ extension ComposeCoordinator: ComposeTootDelegate {
     delegate?.didFinishPresenting(coordinator: self)
   }
 
-  func post(status: String) {
-    let post = Statuses.create(status: status)
+  func post(status: String, replyToID: String?) {
+    let post = Statuses.create(status: status, replyToID: replyToID)
 
     Mastodon.client.run(post) { result in
       DispatchQueue.main.async {

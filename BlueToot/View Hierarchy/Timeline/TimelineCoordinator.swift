@@ -39,6 +39,26 @@ extension TimelineCoordinator: TootsDelegate {
 
     navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
+
+  func reply(to status: Status) {
+    let composeNavigationController = UINavigationController()
+    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.replyToStatus = status
+        composeCoordinator.delegate = self
+        composeCoordinator.start()
+
+    childCoordinators.append(composeCoordinator)
+
+    navigationController.present(composeNavigationController, animated: true, completion: nil)
+  }
+
+  func boost(status: Status) {
+    let boost = Statuses.reblog(id: status.id)
+
+    Mastodon.client.run(boost) { result in
+      print("You boosted this toot!")
+    }
+  }
 }
 
 extension TimelineCoordinator: UITextViewDelegate {

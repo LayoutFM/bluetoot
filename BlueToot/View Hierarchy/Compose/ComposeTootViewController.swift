@@ -10,11 +10,12 @@ import MastodonKit
 
 protocol ComposeTootDelegate {
   func didPressCancel(button: UIBarButtonItem)
-  func post(status: String)
+  func post(status: String, replyToID: String?)
 }
 
 class ComposeTootViewController: UIViewController, UITextViewDelegate {
   var delegate: ComposeTootDelegate?
+  var replyToStatus: Status?
 
   lazy var tootTextView: UITextView = {
     let textView = UITextView()
@@ -26,6 +27,16 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
         textView.becomeFirstResponder()
     return textView
   }()
+
+  init(replyToStatus: Status? = nil) {
+    super.init(nibName: nil, bundle: nil)
+
+    self.setupReplyTo(status: replyToStatus)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,6 +61,16 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
     navigationItem.leftBarButtonItem = cancelButton
   }
 
+  func setupReplyTo(status: Status?) {
+    guard let replyToStatus = status else { return }
+    self.replyToStatus = status
+    let statusAuthor = replyToStatus.account.acct
+    let mentionedAccountsOnStatus = replyToStatus.mentions.map { $0.acct }
+    let allAccounts = [statusAuthor] + mentionedAccountsOnStatus
+    let allAccountsString = allAccounts.removeDuplicates().map{ "@" + $0 }.reduce("") { $0 + $1 + " " }
+    tootTextView.text = allAccountsString
+  }
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     self.view.endEditing(true)
@@ -60,7 +81,7 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
   }
     
   @objc func postNewToot() {
-    delegate?.post(status: tootTextView.text)
+    delegate?.post(status: tootTextView.text, replyToID: replyToStatus?.id)
   }
 
 }
