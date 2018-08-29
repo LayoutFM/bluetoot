@@ -9,6 +9,7 @@
 import UIKit
 
 class TootTextView: UITextView {
+
   override var text: String! {
     didSet {
       let paragraphStyle = NSMutableParagraphStyle()
@@ -24,6 +25,7 @@ class TootTextView: UITextView {
     }
   }
 
+
   override var canBecomeFirstResponder: Bool {
     return false
   }
@@ -33,10 +35,8 @@ class TootTextView: UITextView {
 
     // Set defaults
     isScrollEnabled = false
-    font = UIFont.systemFont(ofSize: 17)
     textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
     isEditable = false
-    linkTextAttributes = [.foregroundColor: self.tintColor]
   }
 
   required init?(coder aDecoder: NSCoder) {

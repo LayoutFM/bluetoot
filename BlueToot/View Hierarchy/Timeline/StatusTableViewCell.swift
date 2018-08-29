@@ -11,7 +11,7 @@ import UIKit
 class StatusTableViewCell: UITableViewCell {
 
   lazy var mainStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [avatarImageView, textStackView])
+    let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .top
@@ -24,8 +24,12 @@ class StatusTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
+
+    let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 50)
+        heightConstraint.priority = UILayoutPriority(999)
+
         imageView.addConstraints([
-          imageView.heightAnchor.constraint(equalToConstant: 50),
+          heightConstraint,
           imageView.widthAnchor.constraint(equalToConstant: 50)
         ])
     return imageView
@@ -45,7 +49,7 @@ class StatusTableViewCell: UITableViewCell {
   }()
 
   lazy var userNameStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [userNameLabel, timeStampLabel])
+    let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 10
@@ -55,19 +59,21 @@ class StatusTableViewCell: UITableViewCell {
   var contentTextView = TootTextView()
 
   lazy var textStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [userNameStackView, contentTextView, imageGalleryView])
+    let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0
-        stackView.setCustomSpacing(15, after: contentTextView)
     return stackView
   }()
 
   lazy var imageGalleryView: ImageGalleryView = {
     let imageGalleryView = ImageGalleryView()
         imageGalleryView.translatesAutoresizingMaskIntoConstraints = false
+    let heightConstraint = imageGalleryView.heightAnchor.constraint(equalToConstant: 200)
+    heightConstraint.priority = UILayoutPriority(999)
+
         imageGalleryView.addConstraints([
-          imageGalleryView.heightAnchor.constraint(equalToConstant: 200)
+          heightConstraint
         ])
     return imageGalleryView
   }()
@@ -77,12 +83,22 @@ class StatusTableViewCell: UITableViewCell {
 
     contentView.addSubview(mainStackView)
     contentView.addConstraints([
-      mainStackView.topAnchor.constraint(equalTo: contentView.readableContentGuide.topAnchor, constant: 5),
-      mainStackView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor, constant: -2),
-      mainStackView.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor, constant: 2),
-      mainStackView.bottomAnchor.constraint(equalTo: contentView.readableContentGuide.bottomAnchor, constant: -5)
+      mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+      mainStackView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor, constant: 0),
+      mainStackView.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor, constant: 0),
+      mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
     ])
 
+    mainStackView.addArrangedSubview(avatarImageView)
+    mainStackView.addArrangedSubview(textStackView)
+
+    textStackView.addArrangedSubview(userNameStackView)
+    textStackView.addArrangedSubview(contentTextView)
+    textStackView.addArrangedSubview(imageGalleryView)
+    textStackView.setCustomSpacing(15, after: contentTextView)
+
+    userNameStackView.addArrangedSubview(userNameLabel)
+    userNameStackView.addArrangedSubview(timeStampLabel)
   }
 
   required init?(coder aDecoder: NSCoder) {

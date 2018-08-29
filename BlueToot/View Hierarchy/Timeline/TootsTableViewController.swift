@@ -32,7 +32,7 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
 
     tableView.separatorInset.left = 80
   }
-  
+
   @objc func didPressToot(button: UIButton) {
     delegate?.didPressToot(button: button)
   }
