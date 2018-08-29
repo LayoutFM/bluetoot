@@ -37,15 +37,17 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
   }
 
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    let status = self.dataProvider.item(at: indexPath) as! Status
+    guard let status = self.dataProvider.item(at: indexPath) as? Status else { return nil }
 
+    // Reply
     let reply = UIContextualAction(style: .normal, title: "Reply") { (action, view, completionHandler) in
-            self.delegate?.reply(to: status)
-            completionHandler(true)
+      self.delegate?.reply(to: status)
+      completionHandler(true)
     }
     reply.image = UIImage(named: "reply")
     reply.backgroundColor = view.tintColor
 
+    // Boost
     let boost = UIContextualAction(style: .normal, title: "Boost") { (action, view, completionHandler) in
       self.delegate?.boost(status: status)
       completionHandler(true)
@@ -53,8 +55,7 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     boost.image = UIImage(named: "boost")
     boost.backgroundColor = UIColor(red: 25/255, green: 204/255, blue: 71/255, alpha: 1)
 
-    let configuration = UISwipeActionsConfiguration(actions: [reply, boost])
-    return configuration
+    return UISwipeActionsConfiguration(actions: [reply, boost])
   }
   
   @objc func didPressToot(button: UIButton) {
