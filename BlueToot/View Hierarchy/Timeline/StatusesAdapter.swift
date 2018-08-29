@@ -13,7 +13,7 @@ class StatusDataProvider: ArrayDataProvider {
   var items: [Any] = []
 
   func loadData(completion: (() -> Void)?) {
-    let homeRequest = Timelines.home()
+    let homeRequest = Timelines.home(range: .limit(100))
 
     Mastodon.client.run(homeRequest) { result in
       guard let statuses = result.value else { return }

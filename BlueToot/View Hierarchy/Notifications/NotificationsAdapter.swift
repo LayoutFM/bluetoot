@@ -13,7 +13,7 @@ class NotificationsDataProvider: ArrayDataProvider {
   var items: [Any] = []
 
   func loadData(completion: (() -> Void)?) {
-    let notificationsRequest = Notifications.all()
+    let notificationsRequest = Notifications.all(range: .limit(50))
 
     Mastodon.client.run(notificationsRequest) { result in
       guard let notifications = result.value else { return }
@@ -51,13 +51,13 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     var titleText = notification.account.displayName
     switch notification.type {
     case .favourite:
-      titleText += " favorited your tweet"
+      titleText += " favorited your toot"
       cell.iconImageView.statusIcon.image = UIImage(named: "favorited-badge")
     case .follow:
       titleText += " followed you"
       cell.iconImageView.statusIcon.image = UIImage(named: "followed-badge")
     case .reblog:
-      titleText += " boosted your tweet"
+      titleText += " boosted your toot"
       cell.iconImageView.statusIcon.image = UIImage(named: "boosted-badge")
     default: break
     }
@@ -66,6 +66,8 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     if let status = notification.status {
       let tootFormatter = TootFormatter()
       cell.descriptionLabel.text = tootFormatter.stripHTML(from: status.content)
+    } else {
+      cell.descriptionLabel.text = ""
     }
 
     return cell

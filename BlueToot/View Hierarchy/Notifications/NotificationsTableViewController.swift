@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MastodonKit
 
 class NotificationsTableViewController: TableViewControllerWithDataAdapter {
+  var delegate: TootsDelegate?
+
   override init(provider: DataProvider, presenter: TableViewDataPresenter) {
     super.init(provider: provider, presenter: presenter)
 
@@ -33,5 +36,20 @@ class NotificationsTableViewController: TableViewControllerWithDataAdapter {
     //    // Set up the New Toot button in the Navigation Bar
     //    let tootButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didPressToot(button:)))
     //    self.navigationItem.rightBarButtonItem = tootButton
+  }
+
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    guard let notification = self.dataProvider.item(at: indexPath) as? MastodonKit.Notification else { return UISwipeActionsConfiguration(actions: []) }
+    guard notification.type == .mention else { return UISwipeActionsConfiguration(actions: []) }
+
+    // Reply
+    let reply = UIContextualAction(style: .normal, title: "Reply") { (action, view, completionHandler) in
+      self.delegate?.reply(to: notification.status!)
+      completionHandler(true)
+    }
+    reply.image = UIImage(named: "reply")
+    reply.backgroundColor = view.tintColor
+
+    return UISwipeActionsConfiguration(actions: [reply])
   }
 }

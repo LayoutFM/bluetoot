@@ -66,6 +66,7 @@ class NotificationTableViewCell: UITableViewCell {
   lazy var titleLabel: UILabel = {
     let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.numberOfLines = 0
     return label
   }()
 
