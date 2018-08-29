@@ -8,9 +8,10 @@
 
 import UIKit
 
-class NotificationsTableViewController: UITableViewController {
-  init() {
-    super.init(style: .plain)
+class NotificationsTableViewController: TableViewControllerWithDataAdapter {
+  override init(provider: DataProvider, presenter: TableViewDataPresenter) {
+    super.init(provider: provider, presenter: presenter)
+
     title = "Notifications"
     tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "notifications"), tag: 0)
   }
@@ -22,6 +23,15 @@ class NotificationsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    view.backgroundColor = .cyan
+    // Set up pull-to-refresh
+    let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    tableView.refreshControl = refreshControl
+
+    tableView.separatorInset.left = 80
+
+    //    // Set up the New Toot button in the Navigation Bar
+    //    let tootButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didPressToot(button:)))
+    //    self.navigationItem.rightBarButtonItem = tootButton
   }
 }

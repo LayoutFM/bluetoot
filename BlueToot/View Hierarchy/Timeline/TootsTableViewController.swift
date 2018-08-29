@@ -30,7 +30,7 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     tableView.refreshControl = refreshControl
     
     // Set up the New Toot button in the Navigation Bar
-    let tootButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didPressToot(button:)))
+    let tootButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressToot(button:)))
     self.navigationItem.rightBarButtonItem = tootButton
 
     tableView.separatorInset.left = 80
