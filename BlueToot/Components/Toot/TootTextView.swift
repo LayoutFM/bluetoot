@@ -33,10 +33,8 @@ class TootTextView: UITextView {
 
     // Set defaults
     isScrollEnabled = false
-    font = UIFont.systemFont(ofSize: 17)
     textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
     isEditable = false
-    linkTextAttributes = [.foregroundColor: self.tintColor]
   }
 
   required init?(coder aDecoder: NSCoder) {
