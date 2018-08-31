@@ -27,10 +27,14 @@ class NotificationsDataProvider: ArrayDataProvider {
 }
 
 class NotificationsDataPresenter: TableViewDataPresenter {
-  var delegate: UITextViewDelegate?
+  let statusesPresenter: StatusDataPresenter
+
+  init(statusesPresenter: StatusDataPresenter) {
+    self.statusesPresenter = statusesPresenter
+  }
 
   func registerCells(for tableView: UITableView) {
-    tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "statusCell")
+    statusesPresenter.registerCells(for: tableView)
     tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: "notificationCell")
   }
 
@@ -38,7 +42,7 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     guard let notification = item as? MastodonKit.Notification else { fatalError() }
 
     if notification.type == .mention {
-      return statusCell(for: notification.status!, at: indexPath, in: tableView)
+      return statusesPresenter.cell(for: notification.status!, at: indexPath, in: tableView)
     } else {
       return notificationCell(for: notification, at: indexPath, in: tableView)
     }
@@ -73,15 +77,4 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     return cell
   }
 
-  func statusCell(for status: Status, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath) as! StatusTableViewCell
-        cell.contentTextView.delegate = delegate
-        cell.userNameLabel.text = status.account.displayName
-        cell.contentTextView.text = status.content
-        cell.avatarImageView.downloadImage(from: status.account.avatar)
-        cell.timeStampLabel.text = TootTimeFormatter().string(from: status.createdAt)
-        cell.imageGalleryView.images = status.mediaAttachments.map { $0.previewURL }
-
-    return cell
-  }
 }

@@ -20,6 +20,7 @@
 		9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C846DB6212FA4E500F164FC /* Extensions.swift */; };
 		9C905FD621363529006973F5 /* NotificationBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C905FD521363529006973F5 /* NotificationBadgeView.swift */; };
 		9CAB7C6C213464CA00C24450 /* TootTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */; };
+		9CD5BC27213979DE00894231 /* TootsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5BC26213979DD00894231 /* TootsDelegate.swift */; };
 		9CE979BD2136283A00223DAA /* NotificationsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE979BC2136283A00223DAA /* NotificationsAdapter.swift */; };
 		9CE979BF21362AC000223DAA /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE979BE21362AC000223DAA /* NotificationTableViewCell.swift */; };
 		9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 		9C846DB6212FA4E500F164FC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9C905FD521363529006973F5 /* NotificationBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBadgeView.swift; sourceTree = "<group>"; };
 		9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootTimeFormatter.swift; sourceTree = "<group>"; };
+		9CD5BC26213979DD00894231 /* TootsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootsDelegate.swift; sourceTree = "<group>"; };
 		9CE979BC2136283A00223DAA /* NotificationsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAdapter.swift; sourceTree = "<group>"; };
 		9CE979BE21362AC000223DAA /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		9CFDDF03212CE06C007FC2DF /* BlueToot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueToot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 				9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */,
 				9CFDDF25212D9460007FC2DF /* StatusTableViewCell.swift */,
 				9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */,
+				9CD5BC26213979DD00894231 /* TootsDelegate.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CD5BC27213979DE00894231 /* TootsDelegate.swift in Sources */,
 				9C58487E212EED8800B78C8C /* TootTextView.swift in Sources */,
 				9C23650B212E260B0016E7F7 /* ComposeCoordinator.swift in Sources */,
 				9C236500212DECF70016E7F7 /* LocalCoordinator.swift in Sources */,

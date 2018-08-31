@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 import SafariServices
 
-class TimelineCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate {
+class TimelineCoordinator: NSObject, Coordinator, TootsDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
 
@@ -25,39 +25,6 @@ class TimelineCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate
     let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
         viewController.delegate = self
     self.navigationController.pushViewController(viewController, animated: false)
-  }
-}
-
-extension TimelineCoordinator: TootsDelegate {
-  func didPressToot(button: UIButton) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-        composeCoordinator.delegate = self
-        composeCoordinator.start()
-
-    childCoordinators.append(composeCoordinator)
-
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-
-  func reply(to status: Status) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-        composeCoordinator.replyToStatus = status
-        composeCoordinator.delegate = self
-        composeCoordinator.start()
-
-    childCoordinators.append(composeCoordinator)
-
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-
-  func boost(status: Status) {
-    let boost = Statuses.reblog(id: status.id)
-
-    Mastodon.client.run(boost) { result in
-      print("You boosted this toot!")
-    }
   }
 }
 

@@ -33,9 +33,13 @@ class NotificationsTableViewController: TableViewControllerWithDataAdapter {
 
     tableView.separatorInset.left = 80
 
-    //    // Set up the New Toot button in the Navigation Bar
-    //    let tootButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didPressToot(button:)))
-    //    self.navigationItem.rightBarButtonItem = tootButton
+    // Set up the New Toot button in the Navigation Bar
+    let tootButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressToot(button:)))
+    self.navigationItem.rightBarButtonItem = tootButton
+  }
+
+  @objc func didPressToot(button: UIButton) {
+    delegate?.didPressToot(button: button)
   }
 
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

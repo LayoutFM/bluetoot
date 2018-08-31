@@ -8,8 +8,9 @@
 
 import UIKit
 import MastodonKit
+import SafariServices
 
-class NotificationsCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate {
+class NotificationsCoordinator: NSObject, TootsDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
 
@@ -18,41 +19,19 @@ class NotificationsCoordinator: NSObject, Coordinator, PresentableCoordinatorDel
   }
 
   func start() {
-    let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: NotificationsDataPresenter())
+    let statusPresenter = StatusDataPresenter()
+        statusPresenter.delegate = self
+    let presenter = NotificationsDataPresenter(statusesPresenter: statusPresenter)
+    let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: presenter)
         viewController.delegate = self
     navigationController.pushViewController(viewController, animated: false)
   }
 }
 
-extension NotificationsCoordinator: TootsDelegate {
-  func didPressToot(button: UIButton) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-    composeCoordinator.delegate = self
-    composeCoordinator.start()
-
-    childCoordinators.append(composeCoordinator)
-
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-
-  func reply(to status: Status) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-    composeCoordinator.replyToStatus = status
-    composeCoordinator.delegate = self
-    composeCoordinator.start()
-
-    childCoordinators.append(composeCoordinator)
-
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-
-  func boost(status: Status) {
-    let boost = Statuses.reblog(id: status.id)
-
-    Mastodon.client.run(boost) { result in
-      print("You boosted this toot!")
-    }
+extension NotificationsCoordinator: UITextViewDelegate {
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    let safariVC = SFSafariViewController(url: URL)
+    navigationController.present(safariVC, animated: true, completion: nil)
+    return false
   }
 }

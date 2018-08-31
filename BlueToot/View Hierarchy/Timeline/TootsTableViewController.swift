@@ -9,12 +9,6 @@
 import UIKit
 import MastodonKit
 
-protocol TootsDelegate: AnyObject {
-  func didPressToot(button: UIButton)
-  func reply(to status: Status)
-  func boost(status: Status)
-}
-
 class TootsTableViewController: TableViewControllerWithDataAdapter {
   var delegate: TootsDelegate?
 

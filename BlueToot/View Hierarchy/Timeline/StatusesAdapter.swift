@@ -30,13 +30,13 @@ class StatusDataPresenter: TableViewDataPresenter {
   var delegate: UITextViewDelegate?
 
   func registerCells(for tableView: UITableView) {
-    tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+    tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "statusCell")
   }
 
   func cell(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
     guard let status = item as? Status else { fatalError() }
 
-    let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! StatusTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath) as! StatusTableViewCell
         cell.contentTextView.delegate = delegate
         cell.userNameLabel.text = status.account.displayName
         cell.contentTextView.text = status.content
