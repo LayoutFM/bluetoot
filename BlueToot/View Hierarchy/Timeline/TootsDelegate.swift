@@ -11,23 +11,11 @@ import MastodonKit
 import SafariServices
 
 protocol TootsDelegate: PresentableCoordinatorDelegate {
-  mutating func didPressToot(button: UIButton)
   mutating func reply(to status: Status)
   mutating func boost(status: Status)
 }
 
 extension TootsDelegate {
-  mutating func didPressToot(button: UIButton) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-        composeCoordinator.delegate = self
-        composeCoordinator.start()
-
-    childCoordinators.append(composeCoordinator)
-
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-
   mutating func reply(to status: Status) {
     let composeNavigationController = UINavigationController()
     let composeCoordinator = ComposeCoordinator(with: composeNavigationController)

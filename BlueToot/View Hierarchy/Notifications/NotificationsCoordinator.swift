@@ -22,9 +22,24 @@ class NotificationsCoordinator: NSObject, TootsDelegate {
     let statusPresenter = StatusDataPresenter()
         statusPresenter.delegate = self
     let presenter = NotificationsDataPresenter(statusesPresenter: statusPresenter)
-    let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: presenter)
+    let dataController = NotificationDataController()
+        dataController.delegate = self
+    let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: presenter, controller: dataController)
         viewController.delegate = self
     navigationController.pushViewController(viewController, animated: false)
+  }
+}
+
+extension NotificationsCoordinator: TootsTableViewControllerDelegate {
+  func didPressToot(button: UIButton) {
+    let composeNavigationController = UINavigationController()
+    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.delegate = self
+        composeCoordinator.start()
+
+    childCoordinators.append(composeCoordinator)
+
+    navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
 }
 

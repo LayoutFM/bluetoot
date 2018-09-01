@@ -51,25 +51,11 @@ class NotificationsDataPresenter: TableViewDataPresenter {
   func notificationCell(for notification: MastodonKit.Notification, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTableViewCell
         cell.avatarImageView.downloadImage(from: notification.account.avatar)
-
-    var titleText = notification.account.displayName
-    switch notification.type {
-    case .favourite:
-      titleText += " favorited your toot"
-      cell.iconImageView.statusIcon.image = UIImage(named: "favorited-badge")
-    case .follow:
-      titleText += " followed you"
-      cell.iconImageView.statusIcon.image = UIImage(named: "followed-badge")
-    case .reblog:
-      titleText += " boosted your toot"
-      cell.iconImageView.statusIcon.image = UIImage(named: "boosted-badge")
-    default: break
-    }
-        cell.titleLabel.text = titleText
+        cell.titleLabel.text = self.sentenceString(for: notification.account.displayName, and: notification.type)
+        cell.iconImageView.statusIcon.image = self.statusImage(for: notification.type)
 
     if let status = notification.status {
-      let tootFormatter = TootFormatter()
-      cell.descriptionLabel.text = tootFormatter.stripHTML(from: status.content)
+      cell.descriptionLabel.text = TootFormatter().stripHTML(from: status.content)
     } else {
       cell.descriptionLabel.text = ""
     }
@@ -77,4 +63,36 @@ class NotificationsDataPresenter: TableViewDataPresenter {
     return cell
   }
 
+  func statusImage(for notificationType: NotificationType) -> UIImage? {
+    switch notificationType {
+      case .favourite: return UIImage(named: "favorited-badge")
+      case .follow: return UIImage(named: "followed-badge")
+      case .reblog: return UIImage(named: "boosted-badge")
+      default: return nil
+    }
+  }
+
+  func sentenceString(for displayName: String, and notificationType: NotificationType) -> String {
+    switch notificationType {
+      case .favourite: return "\(displayName) favorited your toot"
+      case .follow: return "\(displayName) followed you"
+      case .reblog: return "\(displayName) boosted your toot"
+      default: return ""
+    }
+  }
+
+}
+
+class NotificationDataController: TableViewDataController {
+  var delegate: TootsDelegate?
+
+  func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
+    guard let notification = item as? MastodonKit.Notification,
+      notification.type == .mention,
+      let status = notification.status else { return UISwipeActionsConfiguration(actions: []) }
+
+    let statusDataController = StatusDataController()
+        statusDataController.delegate = delegate
+    return statusDataController.trailingSwipeActionsConfiguration(for: status, at: indexPath, in: tableView)
+  }
 }

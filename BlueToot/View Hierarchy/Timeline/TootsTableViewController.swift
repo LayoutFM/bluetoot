@@ -9,8 +9,12 @@
 import UIKit
 import MastodonKit
 
+protocol TootsTableViewControllerDelegate {
+  func didPressToot(button: UIButton)
+}
+
 class TootsTableViewController: TableViewControllerWithDataAdapter {
-  var delegate: TootsDelegate?
+  var delegate: TootsTableViewControllerDelegate?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,28 +32,6 @@ class TootsTableViewController: TableViewControllerWithDataAdapter {
     self.navigationItem.rightBarButtonItem = tootButton
 
     tableView.separatorInset.left = 80
-  }
-
-  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    guard let status = self.dataProvider.item(at: indexPath) as? Status else { return nil }
-
-    // Reply
-    let reply = UIContextualAction(style: .normal, title: "Reply") { (action, view, completionHandler) in
-      self.delegate?.reply(to: status)
-      completionHandler(true)
-    }
-    reply.image = UIImage(named: "reply")
-    reply.backgroundColor = view.tintColor
-
-    // Boost
-    let boost = UIContextualAction(style: .normal, title: "Boost") { (action, view, completionHandler) in
-      self.delegate?.boost(status: status)
-      completionHandler(true)
-    }
-    boost.image = UIImage(named: "boost")
-    boost.backgroundColor = UIColor(red: 25/255, green: 204/255, blue: 71/255, alpha: 1)
-
-    return UISwipeActionsConfiguration(actions: [reply, boost])
   }
   
   @objc func didPressToot(button: UIButton) {

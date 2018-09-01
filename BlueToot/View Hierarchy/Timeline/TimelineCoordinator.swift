@@ -22,9 +22,24 @@ class TimelineCoordinator: NSObject, Coordinator, TootsDelegate {
     let dataProvider = StatusDataProvider()
     let dataPresenter = StatusDataPresenter()
         dataPresenter.delegate = self
-    let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter)
+    let dataController = StatusDataController()
+        dataController.delegate = self
+    let viewController = TootsTableViewController(provider: dataProvider, presenter: dataPresenter, controller: dataController)
         viewController.delegate = self
     self.navigationController.pushViewController(viewController, animated: false)
+  }
+}
+
+extension TimelineCoordinator: TootsTableViewControllerDelegate {
+  func didPressToot(button: UIButton) {
+    let composeNavigationController = UINavigationController()
+    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.delegate = self
+        composeCoordinator.start()
+
+    childCoordinators.append(composeCoordinator)
+
+    navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
 }
 
