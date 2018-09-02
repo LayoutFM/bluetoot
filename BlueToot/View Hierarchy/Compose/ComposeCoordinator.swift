@@ -22,6 +22,7 @@ class ComposeCoordinator: Coordinator {
   func start() {
     let viewController = ComposeTootViewController(replyToStatus: replyToStatus)
         viewController.delegate = self
+    navigationController.modalPresentationStyle = .formSheet
     navigationController.pushViewController(viewController, animated: false)
   }
 }
