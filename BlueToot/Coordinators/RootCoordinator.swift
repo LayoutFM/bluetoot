@@ -11,9 +11,11 @@ import UIKit
 class RootCoordinator {
   var window: UIWindow?
   let tabBarController = UITabBarController()
+  let clientManager: ClientManager
 
   init(window: UIWindow?) {
     self.window = window
+    self.clientManager = ClientManager(baseURL: "https://mastodon.design")
 
     window?.rootViewController = tabBarController
     window?.backgroundColor = .white
@@ -21,8 +23,6 @@ class RootCoordinator {
   }
 
   func start() {
-    let clientManager = ClientManager(baseURL: "https://mastodon.design")
-
     clientManager.authorize(viewController: tabBarController) {
       let timelineNavigationController = UINavigationController()
       let timelineCoordinator = TimelineCoordinator(with: timelineNavigationController)
