@@ -53,6 +53,7 @@ class NotificationsDataPresenter: TableViewDataPresenter {
         cell.avatarImageView.downloadImage(from: notification.account.avatar)
         cell.titleLabel.text = self.sentenceString(for: notification.account.displayName, and: notification.type)
         cell.iconImageView.statusIcon.image = self.statusImage(for: notification.type)
+        cell.timeStampLabel.text = TootTimeFormatter().string(from: notification.createdAt)
 
     if let status = notification.status {
       cell.descriptionLabel.text = TootFormatter().stripHTML(from: status.content)

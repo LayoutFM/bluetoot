@@ -38,11 +38,9 @@ class NotificationTableViewCell: UITableViewCell {
 
   lazy var contentStackView: UIStackView = {
     let stackView = UIStackView()
-    stackView.axis = .vertical
-    stackView.spacing = 3
-    stackView.alignment = .leading
-    stackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-
+        stackView.axis = .vertical
+        stackView.spacing = 3
+        stackView.alignment = .fill
     return stackView
   }()
 
@@ -78,6 +76,24 @@ class NotificationTableViewCell: UITableViewCell {
     return label
   }()
 
+  lazy var timeStampLabel: UILabel = {
+    let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = UIColor(white: 0, alpha: 0.3)
+        label.textAlignment = .right
+        label.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+    return label
+  }()
+
+  lazy var imageStackView: UIStackView = {
+    let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .top
+        stackView.distribution = .fill
+        stackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+    return stackView
+  }()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -93,7 +109,10 @@ class NotificationTableViewCell: UITableViewCell {
     mainStackView.addArrangedSubview(iconImageView)
     mainStackView.addArrangedSubview(contentStackView)
 
-    contentStackView.addArrangedSubview(avatarImageView)
+    imageStackView.addArrangedSubview(avatarImageView)
+    imageStackView.addArrangedSubview(timeStampLabel)
+
+    contentStackView.addArrangedSubview(imageStackView)
     contentStackView.addArrangedSubview(titleLabel)
     contentStackView.addArrangedSubview(descriptionLabel)
   }

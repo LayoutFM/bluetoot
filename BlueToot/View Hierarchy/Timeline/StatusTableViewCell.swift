@@ -63,6 +63,7 @@ class StatusTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0
+        stackView.distribution = .fill
     return stackView
   }()
 
