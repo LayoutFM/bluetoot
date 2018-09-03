@@ -38,10 +38,6 @@
 		9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */; };
 		9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */; };
 		A40CF7B663EC3E8FA3694644 /* Pods_BlueToot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCEA9B521743CCA2C065011 /* Pods_BlueToot.framework */; };
-		DE1C3394213D3F5300B2B5B5 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1C3393213D3F5300B2B5B5 /* ProfileHeaderView.swift */; };
-		DE1C3395213D79D200B2B5B5 /* ProfileAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA5C862139464F00D224D9 /* ProfileAdapter.swift */; };
-		DE9172522136C07B00F4D6AF /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9172512136C07B00F4D6AF /* ProfileCoordinator.swift */; };
-		DE9172542136C29600F4D6AF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9172532136C29600F4D6AF /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,10 +76,6 @@
 		9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerWithAdapter.swift; sourceTree = "<group>"; };
 		9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesAdapter.swift; sourceTree = "<group>"; };
 		A3D158A05994C634D6289FD6 /* Pods-BlueToot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueToot/Pods-BlueToot.debug.xcconfig"; sourceTree = "<group>"; };
-		DE1C3393213D3F5300B2B5B5 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		DE9172512136C07B00F4D6AF /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		DE9172532136C29600F4D6AF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		DEDA5C862139464F00D224D9 /* ProfileAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +96,6 @@
 				9C236507212E1E130016E7F7 /* Compose */,
 				9C2364FE212DECE40016E7F7 /* Local */,
 				9C2364F9212DEAFA0016E7F7 /* Notifications */,
-				DE9172502136C02F00F4D6AF /* Profile */,
 				9CFDDF24212D943E007FC2DF /* Timeline */,
 			);
 			path = "View Hierarchy";
@@ -244,17 +235,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		DE9172502136C02F00F4D6AF /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				DE9172512136C07B00F4D6AF /* ProfileCoordinator.swift */,
-				DE9172532136C29600F4D6AF /* ProfileViewController.swift */,
-				DE1C3393213D3F5300B2B5B5 /* ProfileHeaderView.swift */,
-				DEDA5C862139464F00D224D9 /* ProfileAdapter.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		F1DDA05E2B1365350269AC0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,23 +367,19 @@
 				9C236502212DED190016E7F7 /* LocalTableViewController.swift in Sources */,
 				9CFDDF2B212D9E23007FC2DF /* DataPresenter.swift in Sources */,
 				9CFDDF1D212D11B0007FC2DF /* TootsTableViewController.swift in Sources */,
-				DE9172542136C29600F4D6AF /* ProfileViewController.swift in Sources */,
 				9C2364FD212DEB7A0016E7F7 /* NotificationsTableViewController.swift in Sources */,
 				9CE979BD2136283A00223DAA /* NotificationsAdapter.swift in Sources */,
 				9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */,
 				9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */,
 				9C285F1B2131BFB7006B0118 /* ImageGalleryView.swift in Sources */,
 				9CFDDF26212D9460007FC2DF /* StatusTableViewCell.swift in Sources */,
-				DE1C3395213D79D200B2B5B5 /* ProfileAdapter.swift in Sources */,
 				9CE979BF21362AC000223DAA /* NotificationTableViewCell.swift in Sources */,
 				9CFDDF29212D9DC8007FC2DF /* DataProvider.swift in Sources */,
 				9C905FD621363529006973F5 /* NotificationBadgeView.swift in Sources */,
 				9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */,
-				DE9172522136C07B00F4D6AF /* ProfileCoordinator.swift in Sources */,
 				9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */,
 				9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */,
 				9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */,
-				DE1C3394213D3F5300B2B5B5 /* ProfileHeaderView.swift in Sources */,
 				9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */,
 				9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */,
 				9C2364FB212DEB130016E7F7 /* NotificationsCoordinator.swift in Sources */,

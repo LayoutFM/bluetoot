@@ -36,8 +36,9 @@ class RootCoordinator {
       let notificationsCoordinator = NotificationsCoordinator(with: notificationsNavigationController)
           notificationsCoordinator.start()
 
-      let profile = UINavigationController()
-          profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), selectedImage: nil)
+      let profileNavigationController = UINavigationController()
+      let profileCoordinator = ProfileCoordinator(with: profileNavigationController)
+          profileCoordinator.start()
 
       let search = UINavigationController()
           search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search"), selectedImage: nil)
@@ -45,8 +46,8 @@ class RootCoordinator {
       self.tabBarController.viewControllers = [
         timelineNavigationController,
         notificationsNavigationController,
-        profile,
-        search
+        search,
+        profileNavigationController
       ]
     }
   }
