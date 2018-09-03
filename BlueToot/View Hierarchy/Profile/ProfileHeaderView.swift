@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileHeaderView: UIView {
   
+  let screenSize = UIScreen.main.bounds
+  
   lazy var userNameLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.boldSystemFont(ofSize: 17)
@@ -30,29 +32,17 @@ class ProfileHeaderView: UIView {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.layer.cornerRadius = 25
     imageView.layer.masksToBounds = true
-    
-    let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 50)
-    heightConstraint.priority = UILayoutPriority(999)
-    
-    imageView.addConstraints([
-      heightConstraint,
-      imageView.widthAnchor.constraint(equalToConstant: 50)
-      ])
+  
     return imageView
   }()
   
   lazy var bannerImageView: UIImageView = {
-    let imageView = UIImageView()
+    let imageView = UIImageView(frame: CGRect.zero)
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.layer.masksToBounds = true
+  
+    imageView.backgroundColor = UIColor.gray
     
-    let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 300)
-    heightConstraint.priority = UILayoutPriority(999)
-    
-    imageView.addConstraints([
-      heightConstraint,
-      imageView.widthAnchor.constraint(equalToConstant: 300)
-      ])
     return imageView
   }()
   
@@ -64,36 +54,29 @@ class ProfileHeaderView: UIView {
     stackView.spacing = 12
     return stackView
   }()
-
-  var shouldSetupConstraints = true
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    print("⚡️ View did load, in fact")
     self.addSubview(mainStackView)
+    
+    print("⚡️ View did load, in fact")
+    
     self.addConstraints([
-      mainStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-      mainStackView.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor, constant: 0),
-      mainStackView.trailingAnchor.constraint(equalTo: self.readableContentGuide.trailingAnchor, constant: 0),
-      mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
+      self.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+      self.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor, constant: 0),
+      self.trailingAnchor.constraint(equalTo: self.readableContentGuide.trailingAnchor, constant: 0),
+      self.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
       ])
-    mainStackView.addArrangedSubview(bannerImageView)
+    
     mainStackView.addArrangedSubview(avatarImageView)
-    mainStackView.addArrangedSubview(userNameLabel)
+    mainStackView.addArrangedSubview(bannerImageView)
     mainStackView.addArrangedSubview(userDomainLabel)
+    mainStackView.addArrangedSubview(userNameLabel)
     
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-  }
-  
-  override func updateConstraints() {
-    if(shouldSetupConstraints) {
-      // AutoLayout constraints
-      shouldSetupConstraints = false
-    }
-    super.updateConstraints()
   }
 }

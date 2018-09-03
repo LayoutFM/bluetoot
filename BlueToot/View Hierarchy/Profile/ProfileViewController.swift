@@ -11,7 +11,6 @@ import MastodonKit
 
 class ProfileTableViewController: TableViewControllerWithDataAdapter {
   var delegate: TootsDelegate?
-  let headerView = ProfileHeaderView()
   
   override init(provider: DataProvider, presenter: TableViewDataPresenter) {
     super.init(provider: provider, presenter: presenter)
@@ -27,9 +26,12 @@ class ProfileTableViewController: TableViewControllerWithDataAdapter {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let headerView = ProfileHeaderView(frame: CGRect.zero)
+    headerView.backgroundColor = .cyan
+    
     let containerView = UIView()
     containerView.translatesAutoresizingMaskIntoConstraints = false
-    containerView.addSubview(self.headerView)
+    containerView.addSubview(headerView)
     
     self.tableView.tableHeaderView = containerView
     containerView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
@@ -37,9 +39,6 @@ class ProfileTableViewController: TableViewControllerWithDataAdapter {
     containerView.topAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
 
     self.tableView.tableHeaderView?.layoutIfNeeded()
-    self.tableView.tableHeaderView = self.tableView.tableHeaderView
-    
-    tableView.separatorInset.left = 80
   }
   
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

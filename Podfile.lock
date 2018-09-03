@@ -2,16 +2,19 @@ PODS:
   - HTMLString (4.0.2)
   - MastodonKit (1.0.10)
   - OAuthSwift (1.2.2)
+  - PureLayout (3.1.2)
 
 DEPENDENCIES:
   - HTMLString (~> 4.0)
   - MastodonKit (from `https://github.com/MastodonKit/MastodonKit.git`)
   - OAuthSwift (~> 1.2.0)
+  - PureLayout
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - HTMLString
     - OAuthSwift
+    - PureLayout
 
 EXTERNAL SOURCES:
   MastodonKit:
@@ -26,7 +29,8 @@ SPEC CHECKSUMS:
   HTMLString: d346ba551d1b7e687190c948ec0c2ddaf4057544
   MastodonKit: ec5bf7be17a9045f0015bdf0bf456a15b1c69c9e
   OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
+  PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
 
-PODFILE CHECKSUM: bd9ad5d7d6e22155f9026913e86109b81df15b16
+PODFILE CHECKSUM: 523c82eec13279c69d9b5f22cd9b1366565a2b7a
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
