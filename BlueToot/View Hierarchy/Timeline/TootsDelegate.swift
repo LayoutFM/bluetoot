@@ -13,6 +13,7 @@ import SafariServices
 protocol TootsDelegate: PresentableCoordinatorDelegate {
   mutating func reply(to status: Status)
   mutating func boost(status: Status)
+  func showDetail(for status: Status)
 }
 
 extension TootsDelegate {
@@ -34,5 +35,13 @@ extension TootsDelegate {
     Mastodon.client.run(boost) { result in
       print("You boosted this toot!")
     }
+  }
+
+  func showDetail(for status: Status) {
+    let dataProvider = StatusDetailDataProvider(status: status)
+    let dataPresenter = StatusDataPresenter()
+    let dataController = StatusDataController()
+    let statusDetail = StatusDetailTableViewController(provider: dataProvider, presenter: dataPresenter, controller: dataController)
+    navigationController.pushViewController(statusDetail, animated: true)
   }
 }

@@ -51,6 +51,11 @@ class StatusDataPresenter: TableViewDataPresenter {
 class StatusDataController: TableViewDataController {
   var delegate: TootsDelegate?
 
+  func didSelect(item: Any, at indexPath: IndexPath, in tableView: UITableView) {
+    guard let status = item as? Status else { return }
+    delegate?.showDetail(for: status)
+  }
+
   func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
     guard let status = item as? Status else { return nil }
 

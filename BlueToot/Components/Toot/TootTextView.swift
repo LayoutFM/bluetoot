@@ -28,6 +28,11 @@ class TootTextView: UITextView {
     return false
   }
 
+  override public var selectedTextRange: UITextRange? {
+    get { return nil }
+    set { }
+  }
+
   init() {
     super.init(frame: .zero, textContainer: nil)
 

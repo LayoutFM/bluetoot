@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C0B51E3213D862F0074CA5D /* StatusDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B51E2213D862F0074CA5D /* StatusDetailTableViewController.swift */; };
+		9C0B51E5213D869F0074CA5D /* StatusDetailAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B51E4213D869F0074CA5D /* StatusDetailAdapter.swift */; };
 		9C2364FB212DEB130016E7F7 /* NotificationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2364FA212DEB130016E7F7 /* NotificationsCoordinator.swift */; };
 		9C2364FD212DEB7A0016E7F7 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2364FC212DEB7A0016E7F7 /* NotificationsTableViewController.swift */; };
 		9C236500212DECF70016E7F7 /* LocalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2364FF212DECF70016E7F7 /* LocalCoordinator.swift */; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileReference section */
 		3DCEA9B521743CCA2C065011 /* Pods_BlueToot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueToot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B34D28972EAA355FD377D7 /* Pods-BlueToot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueToot/Pods-BlueToot.release.xcconfig"; sourceTree = "<group>"; };
+		9C0B51E2213D862F0074CA5D /* StatusDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailTableViewController.swift; sourceTree = "<group>"; };
+		9C0B51E4213D869F0074CA5D /* StatusDetailAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailAdapter.swift; sourceTree = "<group>"; };
 		9C2364FA212DEB130016E7F7 /* NotificationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCoordinator.swift; sourceTree = "<group>"; };
 		9C2364FC212DEB7A0016E7F7 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		9C2364FF212DECF70016E7F7 /* LocalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCoordinator.swift; sourceTree = "<group>"; };
@@ -90,9 +94,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C0B51E1213D860E0074CA5D /* StatusDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9C0B51E2213D862F0074CA5D /* StatusDetailTableViewController.swift */,
+				9C0B51E4213D869F0074CA5D /* StatusDetailAdapter.swift */,
+			);
+			path = StatusDetail;
+			sourceTree = "<group>";
+		};
 		9C2364F8212DEAB60016E7F7 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
+				9C0B51E1213D860E0074CA5D /* StatusDetail */,
 				9C236507212E1E130016E7F7 /* Compose */,
 				9C2364FE212DECE40016E7F7 /* Local */,
 				9C2364F9212DEAFA0016E7F7 /* Notifications */,
@@ -362,6 +376,7 @@
 				9CD5BC27213979DE00894231 /* TootsDelegate.swift in Sources */,
 				9C58487E212EED8800B78C8C /* TootTextView.swift in Sources */,
 				9C23650B212E260B0016E7F7 /* ComposeCoordinator.swift in Sources */,
+				9C0B51E5213D869F0074CA5D /* StatusDetailAdapter.swift in Sources */,
 				9C236500212DECF70016E7F7 /* LocalCoordinator.swift in Sources */,
 				9CD5BC2D2139DEF400894231 /* DataController.swift in Sources */,
 				9C236502212DED190016E7F7 /* LocalTableViewController.swift in Sources */,
@@ -369,6 +384,7 @@
 				9CFDDF1D212D11B0007FC2DF /* TootsTableViewController.swift in Sources */,
 				9C2364FD212DEB7A0016E7F7 /* NotificationsTableViewController.swift in Sources */,
 				9CE979BD2136283A00223DAA /* NotificationsAdapter.swift in Sources */,
+				9C0B51E3213D862F0074CA5D /* StatusDetailTableViewController.swift in Sources */,
 				9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */,
 				9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */,
 				9C285F1B2131BFB7006B0118 /* ImageGalleryView.swift in Sources */,
