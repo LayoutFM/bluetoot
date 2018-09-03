@@ -44,10 +44,9 @@ extension NotificationsCoordinator: TootsTableViewControllerDelegate {
   }
 }
 
-extension NotificationsCoordinator: UITextViewDelegate {
-  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-    let safariVC = SFSafariViewController(url: URL)
+extension NotificationsCoordinator: StatusURLHandler {
+  func handle(url: URL) {
+    let safariVC = SFSafariViewController(url: url)
     navigationController.present(safariVC, animated: true, completion: nil)
-    return false
   }
 }

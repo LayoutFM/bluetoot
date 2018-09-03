@@ -42,15 +42,3 @@ extension TimelineCoordinator: TootsTableViewControllerDelegate {
     navigationController.present(composeNavigationController, animated: true, completion: nil)
   }
 }
-
-extension TimelineCoordinator: UITextViewDelegate {
-  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-    guard interaction == .invokeDefaultAction else {
-      return true
-    }
-    
-    let safariVC = SFSafariViewController(url: URL)
-    navigationController.present(safariVC, animated: true, completion: nil)
-    return false
-  }
-}
