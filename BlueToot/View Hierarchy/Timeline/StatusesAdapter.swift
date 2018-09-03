@@ -43,6 +43,7 @@ class StatusDataPresenter: TableViewDataPresenter {
         cell.avatarImageView.downloadImage(from: status.account.avatar)
         cell.timeStampLabel.text = TootTimeFormatter().string(from: status.createdAt)
         cell.imageGalleryView.images = status.mediaAttachments.map { $0.previewURL }
+        cell.conversation.isHidden = status.inReplyToID == nil
 
     return cell
   }

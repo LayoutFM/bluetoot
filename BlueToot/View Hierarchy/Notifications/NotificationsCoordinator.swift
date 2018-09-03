@@ -22,8 +22,9 @@ class NotificationsCoordinator: NSObject, TootsDelegate {
     let statusPresenter = StatusDataPresenter()
         statusPresenter.delegate = self
     let presenter = NotificationsDataPresenter(statusesPresenter: statusPresenter)
-    let dataController = NotificationDataController()
-        dataController.delegate = self
+    let statusDataController = StatusDataController()
+        statusDataController.delegate = self
+    let dataController = NotificationDataController(statusDataController: statusDataController)
     let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: presenter, controller: dataController)
         viewController.delegate = self
     navigationController.pushViewController(viewController, animated: false)

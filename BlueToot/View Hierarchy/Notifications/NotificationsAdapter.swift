@@ -85,15 +85,23 @@ class NotificationsDataPresenter: TableViewDataPresenter {
 }
 
 class NotificationDataController: TableViewDataController {
-  var delegate: TootsDelegate?
+  let statusDataController: StatusDataController
+
+  init(statusDataController: StatusDataController) {
+    self.statusDataController = statusDataController
+  }
+
+  func didSelect(item: Any, at indexPath: IndexPath, in tableView: UITableView) {
+    guard let notification = item as? MastodonKit.Notification,
+      notification.type == .mention, let status = notification.status else { return }
+    statusDataController.didSelect(item: status, at: indexPath, in: tableView)
+  }
 
   func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
     guard let notification = item as? MastodonKit.Notification,
       notification.type == .mention,
       let status = notification.status else { return UISwipeActionsConfiguration(actions: []) }
 
-    let statusDataController = StatusDataController()
-        statusDataController.delegate = delegate
     return statusDataController.trailingSwipeActionsConfiguration(for: status, at: indexPath, in: tableView)
   }
 }
