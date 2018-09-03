@@ -11,11 +11,13 @@ import UIKit
 class TableViewControllerWithDataAdapter: UITableViewController {
   var dataProvider: DataProvider!
   var dataPresenter: TableViewDataPresenter!
+  var dataController: TableViewDataController?
 
-  init(provider: DataProvider, presenter: TableViewDataPresenter) {
+  init(provider: DataProvider, presenter: TableViewDataPresenter, controller: TableViewDataController? = nil) {
     super.init(style: .plain)
     self.dataProvider = provider
     self.dataPresenter = presenter
+    self.dataController = controller
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -47,6 +49,13 @@ class TableViewControllerWithDataAdapter: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let item = dataProvider.item(at: indexPath)
     return dataPresenter.cell(for: item, at: indexPath, in: tableView)
+  }
+
+  // MARK: - Table view delegate
+
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let item = dataProvider.item(at: indexPath)
+    return dataController?.trailingSwipeActionsConfiguration(for: item, at: indexPath, in: tableView)
   }
 
   @objc func refreshData() {

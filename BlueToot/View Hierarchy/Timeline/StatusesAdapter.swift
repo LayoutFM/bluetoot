@@ -13,7 +13,7 @@ class StatusDataProvider: ArrayDataProvider {
   var items: [Any] = []
 
   func loadData(completion: (() -> Void)?) {
-    let homeRequest = Timelines.home()
+    let homeRequest = Timelines.home(range: .limit(100))
 
     Mastodon.client.run(homeRequest) { result in
       guard let statuses = result.value else { return }
@@ -30,13 +30,13 @@ class StatusDataPresenter: TableViewDataPresenter {
   var delegate: UITextViewDelegate?
 
   func registerCells(for tableView: UITableView) {
-    tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+    tableView.register(StatusTableViewCell.self, forCellReuseIdentifier: "statusCell")
   }
 
   func cell(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
     guard let status = item as? Status else { fatalError() }
 
-    let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! StatusTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath) as! StatusTableViewCell
         cell.contentTextView.delegate = delegate
         cell.userNameLabel.text = status.account.displayName
         cell.contentTextView.text = status.content
@@ -45,5 +45,31 @@ class StatusDataPresenter: TableViewDataPresenter {
         cell.imageGalleryView.images = status.mediaAttachments.map { $0.previewURL }
 
     return cell
+  }
+}
+
+class StatusDataController: TableViewDataController {
+  var delegate: TootsDelegate?
+
+  func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
+    guard let status = item as? Status else { return nil }
+
+    // Reply
+    let reply = UIContextualAction(style: .normal, title: "Reply") { (action, view, completionHandler) in
+      self.delegate?.reply(to: status)
+      completionHandler(true)
+    }
+    reply.image = UIImage(named: "reply")
+    reply.backgroundColor = UIView().tintColor
+
+    // Boost
+    let boost = UIContextualAction(style: .normal, title: "Boost") { (action, view, completionHandler) in
+      self.delegate?.boost(status: status)
+      completionHandler(true)
+    }
+    boost.image = UIImage(named: "boost")
+    boost.backgroundColor = UIColor(red: 25/255, green: 204/255, blue: 71/255, alpha: 1)
+
+    return UISwipeActionsConfiguration(actions: [reply, boost])
   }
 }

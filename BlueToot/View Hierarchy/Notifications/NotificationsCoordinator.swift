@@ -8,8 +8,9 @@
 
 import UIKit
 import MastodonKit
+import SafariServices
 
-class NotificationsCoordinator: Coordinator {
+class NotificationsCoordinator: NSObject, TootsDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
 
@@ -18,7 +19,34 @@ class NotificationsCoordinator: Coordinator {
   }
 
   func start() {
-    let viewController = NotificationsTableViewController()
+    let statusPresenter = StatusDataPresenter()
+        statusPresenter.delegate = self
+    let presenter = NotificationsDataPresenter(statusesPresenter: statusPresenter)
+    let dataController = NotificationDataController()
+        dataController.delegate = self
+    let viewController = NotificationsTableViewController(provider: NotificationsDataProvider(), presenter: presenter, controller: dataController)
+        viewController.delegate = self
     navigationController.pushViewController(viewController, animated: false)
+  }
+}
+
+extension NotificationsCoordinator: TootsTableViewControllerDelegate {
+  func didPressToot(button: UIButton) {
+    let composeNavigationController = UINavigationController()
+    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
+        composeCoordinator.delegate = self
+        composeCoordinator.start()
+
+    childCoordinators.append(composeCoordinator)
+
+    navigationController.present(composeNavigationController, animated: true, completion: nil)
+  }
+}
+
+extension NotificationsCoordinator: UITextViewDelegate {
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    let safariVC = SFSafariViewController(url: URL)
+    navigationController.present(safariVC, animated: true, completion: nil)
+    return false
   }
 }
