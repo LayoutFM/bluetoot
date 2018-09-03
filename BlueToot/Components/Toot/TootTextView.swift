@@ -45,4 +45,21 @@ class TootTextView: UITextView {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  // Only register touches for links
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let glyphIndex = self.layoutManager.glyphIndex(for: point, in: self.textContainer)
+
+    //Ensure the glyphIndex actually matches the point and isn't just the closest glyph to the point
+    let glyphRect = self.layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: self.textContainer)
+
+    if glyphIndex < self.textStorage.length,
+      glyphRect.contains(point),
+      self.textStorage.attribute(NSAttributedString.Key.link, at: glyphIndex, effectiveRange: nil) != nil {
+
+      return self
+    } else {
+      return nil
+    }
+  }
 }
