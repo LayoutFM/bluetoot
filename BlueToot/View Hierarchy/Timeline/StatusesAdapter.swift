@@ -38,7 +38,7 @@ class StatusDataPresenter: TableViewDataPresenter {
 
     let cell = tableView.dequeueReusableCell(withIdentifier: "statusCell", for: indexPath) as! StatusTableViewCell
         cell.contentTextView.delegate = delegate
-        cell.userNameLabel.text = status.account.displayName
+        cell.userNameLabel.text = status.account.displayUsername
         cell.contentTextView.text = status.content
         cell.avatarImageView.downloadImage(from: status.account.avatar)
         cell.timeStampLabel.text = TootTimeFormatter().string(from: status.createdAt)

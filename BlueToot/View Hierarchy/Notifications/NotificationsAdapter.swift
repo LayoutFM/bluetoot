@@ -51,7 +51,7 @@ class NotificationsDataPresenter: TableViewDataPresenter {
   func notificationCell(for notification: MastodonKit.Notification, at indexPath: IndexPath, in tableView: UITableView) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTableViewCell
         cell.avatarImageView.downloadImage(from: notification.account.avatar)
-        cell.titleLabel.text = self.sentenceString(for: notification.account.displayName, and: notification.type)
+        cell.titleLabel.text = self.sentenceString(for: notification.account.displayUsername, and: notification.type)
         cell.iconImageView.statusIcon.image = self.statusImage(for: notification.type)
         cell.timeStampLabel.text = TootTimeFormatter().string(from: notification.createdAt)
 
