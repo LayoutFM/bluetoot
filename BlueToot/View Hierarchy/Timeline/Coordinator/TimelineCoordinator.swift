@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 import SafariServices
 
-class TimelineCoordinator: NSObject, Coordinator, TootsDelegate {
+class TimelineCoordinator: NSObject, Coordinator, StatusDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
 

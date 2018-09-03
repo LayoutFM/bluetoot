@@ -17,6 +17,9 @@
 		9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */; };
 		9C23650B212E260B0016E7F7 /* ComposeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */; };
 		9C285F1B2131BFB7006B0118 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C285F1A2131BFB7006B0118 /* ImageGalleryView.swift */; };
+		9C32D545213DBFF900A59CE3 /* StatusDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C32D544213DBFF900A59CE3 /* StatusDataProvider.swift */; };
+		9C32D548213DC05600A59CE3 /* StatusDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C32D547213DC05600A59CE3 /* StatusDataPresenter.swift */; };
+		9C32D54A213DC08B00A59CE3 /* StatusDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C32D549213DC08B00A59CE3 /* StatusDataController.swift */; };
 		9C58487C212EE13B00B78C8C /* TootFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58487B212EE13B00B78C8C /* TootFormatter.swift */; };
 		9C58487E212EED8800B78C8C /* TootTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58487D212EED8800B78C8C /* TootTextView.swift */; };
 		9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C846DB6212FA4E500F164FC /* Extensions.swift */; };
@@ -24,7 +27,9 @@
 		9CAB7C6C213464CA00C24450 /* TootTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */; };
 		9CD5BC27213979DE00894231 /* TootsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5BC26213979DD00894231 /* TootsDelegate.swift */; };
 		9CD5BC2D2139DEF400894231 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5BC2C2139DEF400894231 /* DataController.swift */; };
-		9CE979BD2136283A00223DAA /* NotificationsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE979BC2136283A00223DAA /* NotificationsAdapter.swift */; };
+		9CE945A6213DC2E20039567A /* NotificationsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE945A5213DC2E20039567A /* NotificationsDataProvider.swift */; };
+		9CE945A9213DC32B0039567A /* NotificationDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE945A8213DC32B0039567A /* NotificationDataPresenter.swift */; };
+		9CE945AB213DC3910039567A /* NotificationsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE945AA213DC3910039567A /* NotificationsDataController.swift */; };
 		9CE979BF21362AC000223DAA /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE979BE21362AC000223DAA /* NotificationTableViewCell.swift */; };
 		9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */; };
 		9CFDDF0C212CE06C007FC2DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDDF0A212CE06C007FC2DF /* Main.storyboard */; };
@@ -38,7 +43,6 @@
 		9CFDDF29212D9DC8007FC2DF /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF28212D9DC8007FC2DF /* DataProvider.swift */; };
 		9CFDDF2B212D9E23007FC2DF /* DataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2A212D9E23007FC2DF /* DataPresenter.swift */; };
 		9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */; };
-		9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */; };
 		A40CF7B663EC3E8FA3694644 /* Pods_BlueToot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCEA9B521743CCA2C065011 /* Pods_BlueToot.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +59,9 @@
 		9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTootViewController.swift; sourceTree = "<group>"; };
 		9C23650A212E260B0016E7F7 /* ComposeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeCoordinator.swift; sourceTree = "<group>"; };
 		9C285F1A2131BFB7006B0118 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
+		9C32D544213DBFF900A59CE3 /* StatusDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDataProvider.swift; sourceTree = "<group>"; };
+		9C32D547213DC05600A59CE3 /* StatusDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDataPresenter.swift; sourceTree = "<group>"; };
+		9C32D549213DC08B00A59CE3 /* StatusDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDataController.swift; sourceTree = "<group>"; };
 		9C58487B212EE13B00B78C8C /* TootFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootFormatter.swift; sourceTree = "<group>"; };
 		9C58487D212EED8800B78C8C /* TootTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootTextView.swift; sourceTree = "<group>"; };
 		9C846DB6212FA4E500F164FC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -62,7 +69,9 @@
 		9CAB7C6B213464CA00C24450 /* TootTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootTimeFormatter.swift; sourceTree = "<group>"; };
 		9CD5BC26213979DD00894231 /* TootsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootsDelegate.swift; sourceTree = "<group>"; };
 		9CD5BC2C2139DEF400894231 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		9CE979BC2136283A00223DAA /* NotificationsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAdapter.swift; sourceTree = "<group>"; };
+		9CE945A5213DC2E20039567A /* NotificationsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataProvider.swift; sourceTree = "<group>"; };
+		9CE945A8213DC32B0039567A /* NotificationDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataPresenter.swift; sourceTree = "<group>"; };
+		9CE945AA213DC3910039567A /* NotificationsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataController.swift; sourceTree = "<group>"; };
 		9CE979BE21362AC000223DAA /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		9CFDDF03212CE06C007FC2DF /* BlueToot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueToot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFDDF06212CE06C007FC2DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +87,6 @@
 		9CFDDF28212D9DC8007FC2DF /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		9CFDDF2A212D9E23007FC2DF /* DataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPresenter.swift; sourceTree = "<group>"; };
 		9CFDDF2C212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerWithAdapter.swift; sourceTree = "<group>"; };
-		9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusesAdapter.swift; sourceTree = "<group>"; };
 		A3D158A05994C634D6289FD6 /* Pods-BlueToot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueToot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueToot/Pods-BlueToot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,11 +126,10 @@
 		9C2364F9212DEAFA0016E7F7 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				9C2364FA212DEB130016E7F7 /* NotificationsCoordinator.swift */,
-				9C2364FC212DEB7A0016E7F7 /* NotificationsTableViewController.swift */,
-				9CE979BC2136283A00223DAA /* NotificationsAdapter.swift */,
-				9CE979BE21362AC000223DAA /* NotificationTableViewCell.swift */,
-				9C905FD521363529006973F5 /* NotificationBadgeView.swift */,
+				9CE945A4213DC2B70039567A /* Coordinator */,
+				9CE945A7213DC3020039567A /* DataAdapter */,
+				9CE945AD213DC3F90039567A /* TableView */,
+				9CE945AC213DC3F30039567A /* Cells */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -143,6 +150,33 @@
 				9C236508212E1E130016E7F7 /* ComposeTootViewController.swift */,
 			);
 			path = Compose;
+			sourceTree = "<group>";
+		};
+		9C32D546213DC02D00A59CE3 /* DataAdapters */ = {
+			isa = PBXGroup;
+			children = (
+				9C32D544213DBFF900A59CE3 /* StatusDataProvider.swift */,
+				9C32D547213DC05600A59CE3 /* StatusDataPresenter.swift */,
+				9C32D549213DC08B00A59CE3 /* StatusDataController.swift */,
+			);
+			path = DataAdapters;
+			sourceTree = "<group>";
+		};
+		9C32D54B213DC0E400A59CE3 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				9C236503212DEE090016E7F7 /* TimelineCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		9C32D54C213DC0F000A59CE3 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */,
+				9CFDDF25212D9460007FC2DF /* StatusTableViewCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		9C58487F212F125000B78C8C /* Components */ = {
@@ -170,6 +204,41 @@
 				9C285F1A2131BFB7006B0118 /* ImageGalleryView.swift */,
 			);
 			path = ImageGalleryView;
+			sourceTree = "<group>";
+		};
+		9CE945A4213DC2B70039567A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				9C2364FA212DEB130016E7F7 /* NotificationsCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		9CE945A7213DC3020039567A /* DataAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				9CE945A5213DC2E20039567A /* NotificationsDataProvider.swift */,
+				9CE945A8213DC32B0039567A /* NotificationDataPresenter.swift */,
+				9CE945AA213DC3910039567A /* NotificationsDataController.swift */,
+			);
+			path = DataAdapter;
+			sourceTree = "<group>";
+		};
+		9CE945AC213DC3F30039567A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9CE979BE21362AC000223DAA /* NotificationTableViewCell.swift */,
+				9C905FD521363529006973F5 /* NotificationBadgeView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9CE945AD213DC3F90039567A /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9C2364FC212DEB7A0016E7F7 /* NotificationsTableViewController.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		9CFDDEFA212CE06C007FC2DF = {
@@ -220,10 +289,9 @@
 		9CFDDF24212D943E007FC2DF /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				9C236503212DEE090016E7F7 /* TimelineCoordinator.swift */,
-				9CFDDF1C212D11B0007FC2DF /* TootsTableViewController.swift */,
-				9CFDDF25212D9460007FC2DF /* StatusTableViewCell.swift */,
-				9CFDDF2E212D9EB2007FC2DF /* StatusesAdapter.swift */,
+				9C32D54B213DC0E400A59CE3 /* Coordinator */,
+				9C32D546213DC02D00A59CE3 /* DataAdapters */,
+				9C32D54C213DC0F000A59CE3 /* TableView */,
 				9CD5BC26213979DD00894231 /* TootsDelegate.swift */,
 			);
 			path = Timeline;
@@ -381,9 +449,9 @@
 				9CD5BC2D2139DEF400894231 /* DataController.swift in Sources */,
 				9C236502212DED190016E7F7 /* LocalTableViewController.swift in Sources */,
 				9CFDDF2B212D9E23007FC2DF /* DataPresenter.swift in Sources */,
+				9CE945AB213DC3910039567A /* NotificationsDataController.swift in Sources */,
 				9CFDDF1D212D11B0007FC2DF /* TootsTableViewController.swift in Sources */,
 				9C2364FD212DEB7A0016E7F7 /* NotificationsTableViewController.swift in Sources */,
-				9CE979BD2136283A00223DAA /* NotificationsAdapter.swift in Sources */,
 				9C0B51E3213D862F0074CA5D /* StatusDetailTableViewController.swift in Sources */,
 				9C236509212E1E130016E7F7 /* ComposeTootViewController.swift in Sources */,
 				9CFDDF21212D9184007FC2DF /* Coordinator.swift in Sources */,
@@ -393,14 +461,18 @@
 				9CFDDF29212D9DC8007FC2DF /* DataProvider.swift in Sources */,
 				9C905FD621363529006973F5 /* NotificationBadgeView.swift in Sources */,
 				9CFDDF07212CE06C007FC2DF /* AppDelegate.swift in Sources */,
+				9C32D545213DBFF900A59CE3 /* StatusDataProvider.swift in Sources */,
 				9CFDDF2D212D9E4E007FC2DF /* TableViewControllerWithAdapter.swift in Sources */,
-				9CFDDF2F212D9EB2007FC2DF /* StatusesAdapter.swift in Sources */,
+				9C32D54A213DC08B00A59CE3 /* StatusDataController.swift in Sources */,
+				9CE945A9213DC32B0039567A /* NotificationDataPresenter.swift in Sources */,
 				9CFDDF23212D91BE007FC2DF /* RootCoordinator.swift in Sources */,
 				9C846DB7212FA4E500F164FC /* Extensions.swift in Sources */,
+				9CE945A6213DC2E20039567A /* NotificationsDataProvider.swift in Sources */,
 				9CFDDF1B212D0CAB007FC2DF /* ClientManager.swift in Sources */,
 				9C2364FB212DEB130016E7F7 /* NotificationsCoordinator.swift in Sources */,
 				9C58487C212EE13B00B78C8C /* TootFormatter.swift in Sources */,
 				9C236504212DEE090016E7F7 /* TimelineCoordinator.swift in Sources */,
+				9C32D548213DC05600A59CE3 /* StatusDataPresenter.swift in Sources */,
 				9CAB7C6C213464CA00C24450 /* TootTimeFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

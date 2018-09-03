@@ -10,13 +10,13 @@ import UIKit
 import MastodonKit
 import SafariServices
 
-protocol TootsDelegate: PresentableCoordinatorDelegate, StatusURLHandler {
+protocol StatusDelegate: PresentableCoordinatorDelegate, StatusURLHandler {
   mutating func reply(to status: Status)
   mutating func boost(status: Status)
   func showDetail(for status: Status)
 }
 
-extension TootsDelegate {
+extension StatusDelegate {
   mutating func reply(to status: Status) {
     let composeNavigationController = UINavigationController()
     let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
@@ -48,7 +48,7 @@ extension TootsDelegate {
   }
 }
 
-extension TootsDelegate {
+extension StatusDelegate {
   func handle(url: URL) {
     let safariVC = SFSafariViewController(url: url)
     navigationController.present(safariVC, animated: true, completion: nil)

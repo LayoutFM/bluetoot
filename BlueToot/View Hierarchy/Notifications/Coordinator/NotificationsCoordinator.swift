@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 import SafariServices
 
-class NotificationsCoordinator: NSObject, TootsDelegate {
+class NotificationsCoordinator: NSObject, StatusDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
 
@@ -41,12 +41,5 @@ extension NotificationsCoordinator: TootsTableViewControllerDelegate {
     childCoordinators.append(composeCoordinator)
 
     navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-}
-
-extension NotificationsCoordinator: StatusURLHandler {
-  func handle(url: URL) {
-    let safariVC = SFSafariViewController(url: url)
-    navigationController.present(safariVC, animated: true, completion: nil)
   }
 }
