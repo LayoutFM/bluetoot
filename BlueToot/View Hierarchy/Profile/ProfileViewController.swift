@@ -24,9 +24,13 @@ class ProfileTableViewController: TableViewControllerWithDataAdapter {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let headerView = ProfileHeaderView()
-
-    self.tableView.tableHeaderView = headerView
+//    let headerView = self.tableView.tableHeaderView
+//    headerView!.translatesAutoresizingMaskIntoConstraints = false
+//
+//    headerView!.topAnchor.constraint(equalTo: self.tableView.topAnchor, constant: 0).isActive = true
+//    headerView!.leadingAnchor.constraint(equalTo: self.tableView.leadingAnchor, constant: 0).isActive = true
+//    headerView!.trailingAnchor.constraint(equalTo: self.tableView.trailingAnchor, constant: 0).isActive = true
+//    headerView!.bottomAnchor.constraint(equalTo: self.tableView.bottomAnchor, constant: 0).isActive = true
   }
 
 }

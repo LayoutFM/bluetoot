@@ -14,6 +14,7 @@ class ProfileHeaderView: UIView {
     let label = UILabel()
     label.font = UIFont.boldSystemFont(ofSize: 17)
     label.text = "User Name"
+    label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
@@ -22,6 +23,7 @@ class ProfileHeaderView: UIView {
     label.font = UIFont.systemFont(ofSize: 15)
     label.textColor = UIColor(white: 0, alpha: 0.3)
     label.text = "User Domain"
+    label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
@@ -41,6 +43,14 @@ class ProfileHeaderView: UIView {
   
     imageView.backgroundColor = UIColor.gray
     
+    let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 180)
+    heightConstraint.priority = UILayoutPriority(999)
+    
+    imageView.addConstraints([
+      heightConstraint,
+      imageView.widthAnchor.constraint(equalToConstant: 50)
+      ])
+    
     return imageView
   }()
   
@@ -58,19 +68,17 @@ class ProfileHeaderView: UIView {
     
     self.addSubview(mainStackView)
 
-    print("⚡️ View did load, in fact")
-
     self.addConstraints([
-      self.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-      self.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor, constant: 0),
-      self.trailingAnchor.constraint(equalTo: self.readableContentGuide.trailingAnchor, constant: 0),
-      self.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+      mainStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+      mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+      mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+      mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
       ])
 
-    mainStackView.addArrangedSubview(avatarImageView)
     mainStackView.addArrangedSubview(bannerImageView)
-    mainStackView.addArrangedSubview(userDomainLabel)
+    mainStackView.addArrangedSubview(avatarImageView)
     mainStackView.addArrangedSubview(userNameLabel)
+    mainStackView.addArrangedSubview(userDomainLabel)
 
   }
   

@@ -28,6 +28,21 @@ class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate,
         let dataPresenter = StatusDataPresenter()
             dataPresenter.delegate = self
         let viewController = ProfileTableViewController(provider: dataProvider, presenter: dataPresenter)
+        
+        let viewHeader = ProfileHeaderView()
+        viewController.tableView.tableHeaderView = viewHeader
+        viewHeader.userNameLabel.text = currentUser.displayName
+        viewHeader.userDomainLabel.text = currentUser.username
+        viewHeader.avatarImageView.downloadImage(from: currentUser.avatar)
+        viewHeader.bannerImageView.downloadImage(from: currentUser.header)
+        
+        viewHeader.translatesAutoresizingMaskIntoConstraints = false
+        
+        viewHeader.topAnchor.constraint(equalTo: viewController.tableView.topAnchor, constant: 0).isActive = true
+        viewHeader.leadingAnchor.constraint(equalTo: viewController.tableView.leadingAnchor, constant: 0).isActive = true
+        viewHeader.trailingAnchor.constraint(equalTo: viewController.tableView.trailingAnchor, constant: 0).isActive = true
+        viewHeader.bottomAnchor.constraint(equalTo: viewController.tableView.bottomAnchor, constant: 0).isActive = true
+        
         self.navigationController.pushViewController(viewController, animated: false)
       }
     }
