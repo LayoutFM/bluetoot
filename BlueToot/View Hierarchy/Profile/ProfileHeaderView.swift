@@ -12,7 +12,7 @@ class ProfileHeaderView: UIView {
   
   lazy var userNameLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.boldSystemFont(ofSize: 17)
+    label.font = UIFont.boldSystemFont(ofSize: 19)
     label.text = "User Name"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -27,11 +27,28 @@ class ProfileHeaderView: UIView {
     return label
   }()
   
+  lazy var userBioLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 17)
+    label.text = "Bio goes here"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  
   lazy var avatarImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.layer.cornerRadius = 25
+    imageView.layer.cornerRadius = 32.5
     imageView.layer.masksToBounds = true
+    
+    let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 65)
+    heightConstraint.priority = UILayoutPriority(999)
+    
+    imageView.addConstraints([
+      heightConstraint,
+      imageView.widthAnchor.constraint(equalToConstant: 65)
+      ])
   
     return imageView
   }()
@@ -40,18 +57,57 @@ class ProfileHeaderView: UIView {
     let imageView = UIImageView(frame: CGRect.zero)
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.layer.masksToBounds = true
-  
-    imageView.backgroundColor = UIColor.gray
+    imageView.contentMode = .center
     
     let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 180)
     heightConstraint.priority = UILayoutPriority(999)
     
-    imageView.addConstraints([
-      heightConstraint,
-      imageView.widthAnchor.constraint(equalToConstant: 50)
-      ])
+    imageView.addConstraints([heightConstraint])
     
     return imageView
+  }()
+  
+  lazy var followingCount: Int = {
+    let number = Int()
+    return number
+  }()
+  
+  lazy var followerCount: Int = {
+    let number = Int()
+    return number
+  }()
+  
+  lazy var followersButton: UIButton = {
+    let button = UIButton()
+    let label = String(followerCount) + " FOLLOWERS"
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle(label, for: .normal)
+    button.backgroundColor = .lightGray
+    button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    button.layer.cornerRadius = 15
+    
+    let heightConstraint = button.heightAnchor.constraint(equalToConstant: 50)
+    heightConstraint.priority = UILayoutPriority(999)
+    
+    button.addConstraints([heightConstraint])
+    
+    return button
+  }()
+  
+  lazy var followingButton: UIButton = {
+    let button = UIButton()
+    let label = String(followingCount) + " FOLLOWING"
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle(label, for: .normal)
+    button.backgroundColor = .lightGray
+    button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    button.layer.cornerRadius = 15
+    
+    let heightConstraint = button.heightAnchor.constraint(equalToConstant: 50)
+    heightConstraint.priority = UILayoutPriority(999)
+    
+    button.addConstraints([heightConstraint])
+    return button
   }()
   
   lazy var mainStackView: UIStackView = {
@@ -59,7 +115,45 @@ class ProfileHeaderView: UIView {
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.alignment = .top
-    stackView.spacing = 12
+    stackView.spacing = 18
+    return stackView
+  }()
+  
+  lazy var wrapperStack: UIStackView = {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .vertical
+    stackView.alignment = .top
+    stackView.spacing = 13
+    
+    return stackView
+  }()
+  
+  lazy var metadataStack: UIStackView = {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .horizontal
+    stackView.alignment = .center
+    stackView.spacing = 9
+    return stackView
+  }()
+  
+  lazy var identityStack: UIStackView = {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .vertical
+    stackView.alignment = .top
+    stackView.spacing = 1
+    return stackView
+  }()
+  
+  lazy var followStack: UIStackView = {
+    let stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.axis = .horizontal
+    stackView.alignment = .center
+    stackView.spacing = 8
+    stackView.distribution = .fillEqually
     return stackView
   }()
   
@@ -76,10 +170,17 @@ class ProfileHeaderView: UIView {
       ])
 
     mainStackView.addArrangedSubview(bannerImageView)
-    mainStackView.addArrangedSubview(avatarImageView)
-    mainStackView.addArrangedSubview(userNameLabel)
-    mainStackView.addArrangedSubview(userDomainLabel)
-
+    mainStackView.addArrangedSubview(wrapperStack)
+    wrapperStack.addArrangedSubview(metadataStack)
+    wrapperStack.addArrangedSubview(userBioLabel)
+    wrapperStack.addArrangedSubview(followStack)
+    metadataStack.addArrangedSubview(avatarImageView)
+    metadataStack.addArrangedSubview(identityStack)
+    identityStack.addArrangedSubview(userNameLabel)
+    identityStack.addArrangedSubview(userDomainLabel)
+    followStack.addArrangedSubview(followersButton)
+    followStack.addArrangedSubview(followingButton)
+    
   }
   
   required init?(coder aDecoder: NSCoder) {

@@ -16,6 +16,10 @@ class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate,
   
   init(with navigationController: UINavigationController) {
     self.navigationController = navigationController
+    
+    // Hack to "hide" navigation bar
+    self.navigationController.setNavigationBarHidden(true, animated: false)
+    
   }
   
   func start() {
@@ -32,7 +36,13 @@ class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate,
         let viewHeader = ProfileHeaderView()
         viewController.tableView.tableHeaderView = viewHeader
         viewHeader.userNameLabel.text = currentUser.displayName
-        viewHeader.userDomainLabel.text = currentUser.username
+        viewHeader.userDomainLabel.text = "@" + currentUser.username
+        let bioToFormat = currentUser.note
+        let bioFormatter = TootFormatter()
+        let formatedText = bioFormatter.mutableAttributedString(from: bioToFormat)
+        viewHeader.userBioLabel.text = formatedText.string
+        viewHeader.followerCount = currentUser.followersCount
+        viewHeader.followingCount = currentUser.followingCount
         viewHeader.avatarImageView.downloadImage(from: currentUser.avatar)
         viewHeader.bannerImageView.downloadImage(from: currentUser.header)
         
@@ -42,6 +52,8 @@ class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate,
         viewHeader.leadingAnchor.constraint(equalTo: viewController.tableView.leadingAnchor, constant: 0).isActive = true
         viewHeader.trailingAnchor.constraint(equalTo: viewController.tableView.trailingAnchor, constant: 0).isActive = true
         viewHeader.bottomAnchor.constraint(equalTo: viewController.tableView.bottomAnchor, constant: 0).isActive = true
+        
+        viewController.tableView.tableHeaderView?.layoutIfNeeded()
         
         self.navigationController.pushViewController(viewController, animated: false)
       }
