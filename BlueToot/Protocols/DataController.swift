@@ -10,10 +10,12 @@ import UIKit
 
 protocol TableViewDataController {
   func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration?
+  func didSelect(item: Any, at indexPath: IndexPath, in tableView: UITableView)
 }
 
 extension TableViewDataController {
   func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
     return UISwipeActionsConfiguration(actions: [])
   }
+  func didSelect(item: Any, at indexPath: IndexPath, in tableView: UITableView) {}
 }

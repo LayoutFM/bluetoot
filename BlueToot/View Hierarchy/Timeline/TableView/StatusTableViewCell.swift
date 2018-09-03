@@ -41,6 +41,22 @@ class StatusTableViewCell: UITableViewCell {
     return label
   }()
 
+  lazy var statusStackView: UIStackView = {
+    let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.alignment = .center
+    return stackView
+  }()
+
+  lazy var timeStampStackView: UIStackView = {
+    let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.alignment = .center
+    return stackView
+  }()
+
   lazy var timeStampLabel: UILabel = {
     let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
@@ -79,6 +95,8 @@ class StatusTableViewCell: UITableViewCell {
     return imageGalleryView
   }()
 
+  let conversation = UIImageView(image: UIImage(named: "conversationBubble"))
+
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -98,8 +116,13 @@ class StatusTableViewCell: UITableViewCell {
     textStackView.addArrangedSubview(imageGalleryView)
     textStackView.setCustomSpacing(15, after: contentTextView)
 
+    statusStackView.addArrangedSubview(conversation)
+
+    timeStampStackView.addArrangedSubview(statusStackView)
+    timeStampStackView.addArrangedSubview(timeStampLabel)
+
     userNameStackView.addArrangedSubview(userNameLabel)
-    userNameStackView.addArrangedSubview(timeStampLabel)
+    userNameStackView.addArrangedSubview(timeStampStackView)
   }
 
   required init?(coder aDecoder: NSCoder) {

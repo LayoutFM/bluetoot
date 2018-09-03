@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MastodonKit
 
 extension UIImageView {
   func downloadImage(from url: URL) {
@@ -38,5 +39,15 @@ extension Array where Element: Equatable {
     }
 
     return result
+  }
+}
+
+extension Account {
+  var displayUsername: String {
+    guard displayName != "" else {
+      return username
+    }
+
+    return displayName
   }
 }
