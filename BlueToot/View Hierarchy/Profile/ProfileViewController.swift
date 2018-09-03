@@ -9,50 +9,62 @@
 import UIKit
 import MastodonKit
 
-class ProfileViewController: UIViewController {
+class ProfileTableViewController: TableViewControllerWithDataAdapter {
+  var delegate: TootsDelegate?
+  let headerView = ProfileHeaderView()
   
-  lazy var mainStackView: UIStackView = {
-    let stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.axis = .vertical
-    stackView.alignment = .top
-    stackView.spacing = 12
-    stackView.backgroundColor = .red
-    return stackView
-  }()
+  override init(provider: DataProvider, presenter: TableViewDataPresenter) {
+    super.init(provider: provider, presenter: presenter)
+
+    title = "Profile"
+    tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 0)
+  }
   
-  lazy var profileView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .blue
-    view.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-    view.backgroundColor = .blue
-    return view
-  }()
-  
-  lazy var profileName: UILabel = {
-    let label = UILabel()
-    label.text = "John Doe"
-    label.font = UIFont.boldSystemFont(ofSize: 17)
-    label.backgroundColor = .cyan
-    return label
-  }()
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "Profile"
-    tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 0)
-
-    self.view.addSubview(mainStackView)
-    self.view.addConstraints([
-      mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-      mainStackView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: 0),
-      mainStackView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor, constant: 0),
-      mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
-    ])
+    let containerView = UIView()
+    containerView.translatesAutoresizingMaskIntoConstraints = false
+    containerView.addSubview(self.headerView)
     
-    mainStackView.addArrangedSubview(profileView)
-    mainStackView.addArrangedSubview(profileName)
-  }
+    self.tableView.tableHeaderView = containerView
+    containerView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
+    containerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
+    containerView.topAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
 
+    self.tableView.tableHeaderView?.layoutIfNeeded()
+    self.tableView.tableHeaderView = self.tableView.tableHeaderView
+    
+    tableView.separatorInset.left = 80
+  }
+  
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    guard let status = self.dataProvider.item(at: indexPath) as? Status else { return nil }
+    
+    // Reply
+    let reply = UIContextualAction(style: .normal, title: "Reply") { (action, view, completionHandler) in
+      self.delegate?.reply(to: status)
+      completionHandler(true)
+    }
+    reply.image = UIImage(named: "reply")
+    reply.backgroundColor = view.tintColor
+    
+    // Boost
+    let boost = UIContextualAction(style: .normal, title: "Boost") { (action, view, completionHandler) in
+      self.delegate?.boost(status: status)
+      completionHandler(true)
+    }
+    boost.image = UIImage(named: "boost")
+    boost.backgroundColor = UIColor(red: 25/255, green: 204/255, blue: 71/255, alpha: 1)
+    
+    return UISwipeActionsConfiguration(actions: [reply, boost])
+  }
+  
+  @objc func didPressToot(button: UIButton) {
+    delegate?.didPressToot(button: button)
+  }
 }
