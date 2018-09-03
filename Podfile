@@ -9,5 +9,4 @@ target 'BlueToot' do
   pod 'MastodonKit', :git => 'https://github.com/MastodonKit/MastodonKit.git'
   pod 'OAuthSwift', '~> 1.2.0'
   pod 'HTMLString', '~> 4.0'
-  pod 'PureLayout'
 end

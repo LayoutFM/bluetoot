@@ -10,8 +10,6 @@ import UIKit
 
 class ProfileHeaderView: UIView {
   
-  let screenSize = UIScreen.main.bounds
-  
   lazy var userNameLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.boldSystemFont(ofSize: 17)

@@ -10,7 +10,7 @@ import UIKit
 import MastodonKit
 import SafariServices
 
-class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate {
+class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate, TootsDelegate {
   var navigationController: UINavigationController
   var childCoordinators = [Coordinator]()
   
@@ -19,44 +19,18 @@ class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate 
   }
   
   func start() {
-    let dataProvider = ProfileDataProvider()
-    let dataPresenter = StatusDataPresenter()
+    
+    Mastodon.client.run(Accounts.currentUser()) { result in
+      guard let currentUser = result.value else { return }
+      
+      DispatchQueue.main.async {
+        let dataProvider = ProfileDataProvider(account: currentUser)
+        let dataPresenter = StatusDataPresenter()
         dataPresenter.delegate = self
-    let viewController = ProfileTableViewController(provider: dataProvider, presenter: dataPresenter)
+        let viewController = ProfileTableViewController(provider: dataProvider, presenter: dataPresenter)
         viewController.delegate = self
-    self.navigationController.pushViewController(viewController, animated: false)
-  }
-}
-
-extension ProfileCoordinator: TootsDelegate {
-  func didPressToot(button: UIButton) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-    composeCoordinator.delegate = self
-    composeCoordinator.start()
-    
-    childCoordinators.append(composeCoordinator)
-    
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-  
-  func reply(to status: Status) {
-    let composeNavigationController = UINavigationController()
-    let composeCoordinator = ComposeCoordinator(with: composeNavigationController)
-    composeCoordinator.replyToStatus = status
-    composeCoordinator.delegate = self
-    composeCoordinator.start()
-    
-    childCoordinators.append(composeCoordinator)
-    
-    navigationController.present(composeNavigationController, animated: true, completion: nil)
-  }
-  
-  func boost(status: Status) {
-    let boost = Statuses.reblog(id: status.id)
-    
-    Mastodon.client.run(boost) { result in
-      print("You boosted this toot!")
+        self.navigationController.pushViewController(viewController, animated: false)
+      }
     }
   }
 }
