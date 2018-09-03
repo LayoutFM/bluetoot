@@ -57,21 +57,21 @@ class ProfileHeaderView: UIView {
     super.init(frame: frame)
     
     self.addSubview(mainStackView)
-    
+
     print("⚡️ View did load, in fact")
-    
+
     self.addConstraints([
       self.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
       self.leadingAnchor.constraint(equalTo: self.readableContentGuide.leadingAnchor, constant: 0),
       self.trailingAnchor.constraint(equalTo: self.readableContentGuide.trailingAnchor, constant: 0),
       self.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
       ])
-    
+
     mainStackView.addArrangedSubview(avatarImageView)
     mainStackView.addArrangedSubview(bannerImageView)
     mainStackView.addArrangedSubview(userDomainLabel)
     mainStackView.addArrangedSubview(userNameLabel)
-    
+
   }
   
   required init?(coder aDecoder: NSCoder) {

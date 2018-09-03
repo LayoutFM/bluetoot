@@ -18,12 +18,12 @@ class ProfileDataProvider: ArrayDataProvider {
   }
   
   func loadData(completion: (() -> Void)?) {
-    
     Mastodon.client.run(Accounts.statuses(id: account.id)) { result in
       guard let statuses = result.value else { return }
       
       DispatchQueue.main.async {
         self.items = statuses
+        completion?()
       }
     }
   }

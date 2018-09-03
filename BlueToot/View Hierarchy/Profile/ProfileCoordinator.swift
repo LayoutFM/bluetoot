@@ -22,13 +22,12 @@ class ProfileCoordinator: NSObject, Coordinator, PresentableCoordinatorDelegate,
     
     Mastodon.client.run(Accounts.currentUser()) { result in
       guard let currentUser = result.value else { return }
-      
+    
       DispatchQueue.main.async {
         let dataProvider = ProfileDataProvider(account: currentUser)
         let dataPresenter = StatusDataPresenter()
-        dataPresenter.delegate = self
+            dataPresenter.delegate = self
         let viewController = ProfileTableViewController(provider: dataProvider, presenter: dataPresenter)
-        viewController.delegate = self
         self.navigationController.pushViewController(viewController, animated: false)
       }
     }

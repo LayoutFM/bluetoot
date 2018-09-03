@@ -10,10 +10,8 @@ import UIKit
 import MastodonKit
 
 class ProfileTableViewController: TableViewControllerWithDataAdapter {
-  var delegate: TootsDelegate?
-  
   override init(provider: DataProvider, presenter: TableViewDataPresenter, controller: TableViewDataController? = nil) {
-    super.init(provider: provider, presenter: presenter)
+    super.init(provider: provider, presenter: presenter, controller: controller)
 
     title = "Profile"
     tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 0)
@@ -25,22 +23,10 @@ class ProfileTableViewController: TableViewControllerWithDataAdapter {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    dataProvider.loadData {
-      self.tableView.reloadData()
-    }
-    
-    let headerView = ProfileHeaderView()
-    
-    self.tableView.tableHeaderView = headerView
-    headerView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
-    headerView.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
-    headerView.topAnchor.constraint(equalTo: self.tableView.topAnchor).isActive = true
 
-    self.tableView.tableHeaderView?.layoutIfNeeded()
+    let headerView = ProfileHeaderView()
+
+    self.tableView.tableHeaderView = headerView
   }
-  
-  @objc func didPressToot(button: UIButton) {
-//    delegate?.didPressToot(button: button)
-  }
+
 }
