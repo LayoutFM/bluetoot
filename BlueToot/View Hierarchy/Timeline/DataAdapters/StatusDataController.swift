@@ -17,7 +17,7 @@ class StatusDataController: TableViewDataController {
     delegate?.showDetail(for: status)
   }
 
-  func trailingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
+  func leadingSwipeActionsConfiguration(for item: Any, at indexPath: IndexPath, in tableView: UITableView) -> UISwipeActionsConfiguration? {
     guard let status = item as? Status else { return nil }
 
     // Reply

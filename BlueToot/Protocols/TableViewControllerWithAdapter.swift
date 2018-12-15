@@ -58,6 +58,11 @@ class TableViewControllerWithDataAdapter: UITableViewController {
     dataController?.didSelect(item: item, at: indexPath, in: tableView)
   }
 
+  override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let item = dataProvider.item(at: indexPath)
+    return dataController?.leadingSwipeActionsConfiguration(for: item, at: indexPath, in: tableView)
+  }
+
   override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let item = dataProvider.item(at: indexPath)
     return dataController?.trailingSwipeActionsConfiguration(for: item, at: indexPath, in: tableView)
