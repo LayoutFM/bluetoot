@@ -17,6 +17,12 @@ class ComposeTootViewController: UIViewController, UITextViewDelegate {
   var delegate: ComposeTootDelegate?
   var replyToStatus: Status?
 
+  override var keyCommands: [UIKeyCommand]? {
+    return [
+      UIKeyCommand(input: "w", modifierFlags: .command, action: #selector(didPressCancel(button:)), discoverabilityTitle: "Close")
+    ]
+  }
+
   lazy var tootTextView: UITextView = {
     let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false

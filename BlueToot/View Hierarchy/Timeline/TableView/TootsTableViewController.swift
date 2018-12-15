@@ -16,6 +16,12 @@ protocol TootsTableViewControllerDelegate {
 class TootsTableViewController: TableViewControllerWithDataAdapter {
   var delegate: TootsTableViewControllerDelegate?
 
+  override var keyCommands: [UIKeyCommand]? {
+    return [
+      UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(didPressToot(button:)), discoverabilityTitle: "New Toot")
+    ]
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 

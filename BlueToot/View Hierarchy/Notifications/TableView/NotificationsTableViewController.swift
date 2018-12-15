@@ -12,6 +12,12 @@ import MastodonKit
 class NotificationsTableViewController: TableViewControllerWithDataAdapter {
   var delegate: TootsTableViewControllerDelegate?
 
+  override var keyCommands: [UIKeyCommand]? {
+    return [
+      UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(didPressToot(button:)), discoverabilityTitle: "New Toot")
+    ]
+  }
+
   override init(provider: DataProvider, presenter: TableViewDataPresenter, controller: TableViewDataController? = nil) {
     super.init(provider: provider, presenter: presenter, controller: controller)
 
